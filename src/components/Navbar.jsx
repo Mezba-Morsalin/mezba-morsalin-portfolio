@@ -14,8 +14,6 @@ import {
   Mail,
 } from "lucide-react";
 import ThemeToggle from "./ui/ThemeToggle";
-import navImg from '../../public/assests/mezba.png'
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -50,7 +48,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-10 lg:flex">
           {menus.map((item) => (
             <li key={item.name}>
-              <Link
+              <a
                 href={item.href}
                 onClick={() => setActive(item.name)}
                 className={`relative font-mono text-[15px] font-medium tracking-wide transition-colors duration-300 ${
@@ -72,7 +70,7 @@ export default function Navbar() {
                     }}
                   />
                 )}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
@@ -81,12 +79,12 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
 
-          <Link
+          <a
             href="#contact"
             className="rounded-xl font-mono bg-linear-to-r from-blue-600 to-cyan-400 px-6 py-3 text-sm font-semibold text-white transition hover:scale-105"
           >
             Hire Me
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Toggle */}
@@ -143,12 +141,12 @@ export default function Navbar() {
                 <ThemeToggle />
               </div>
 
-              <Link
+              <a
                 href="#contact"
                 className="mt-4 font-mono block rounded-xl bg-linear-to-r from-blue-600 to-cyan-400 px-5 py-3 text-center font-semibold text-white"
               >
                 Hire Me
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

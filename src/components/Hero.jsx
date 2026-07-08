@@ -1,0 +1,344 @@
+"use client";
+
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import { motion } from "motion/react";
+
+import {
+  ArrowRight,
+  Download,
+  Flame,
+  Rocket,
+} from "lucide-react";
+
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaXTwitter,
+} from "react-icons/fa6";
+
+import { Button } from "@/components/ui/button";
+
+import bannerImg from "../../public/assests/MezbaMorsalin.png";
+
+const TypeAnimation = dynamic(
+  () =>
+    import("react-type-animation").then(
+      (mod) => mod.TypeAnimation
+    ),
+  {
+    ssr: false,
+  }
+);
+
+export default function Hero() {
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen  bg-background"
+    >
+      {/* ================= Animated Aurora Background ================= */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        {/* Left Aurora */}
+        <motion.div
+          animate={{
+            x: [0, 120, 0],
+            y: [0, 80, 0],
+            scale: [1, 1.25, 1],
+            opacity: [0.15, 0.35, 0.15],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -left-[420px] -top-[250px] h-[900px] w-[900px] rounded-full bg-sky-500 blur-[220px]"
+        />
+
+        {/* Right Aurora */}
+        <motion.div
+          animate={{
+            x: [0, -120, 0],
+            y: [0, -60, 0],
+            scale: [1, 1.2, 1],
+            opacity: [0.12, 0.3, 0.12],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -right-[420px] top-0 h-[900px] w-[900px] rounded-full bg-cyan-500 blur-[220px]"
+        />
+
+        {/* Bottom Glow */}
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.08, 0.2, 0.08],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -bottom-[600px] left-1/2 h-[1300px] w-[1300px] -translate-x-1/2 rounded-full bg-blue-600 blur-[260px]"
+        />
+
+        {/* Grid Overlay */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:70px_70px]" />
+      </div>
+
+      {/* ================= Main Content Container ================= */}
+      <div className="mx-auto grid min-h-screen max-w-7xl items-center gap-20 px-6 pt-24 lg:grid-cols-2">
+        
+        {/* LEFT CONTENT */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            x: -70,
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+          }}
+          transition={{
+            duration: 0.8,
+          }}
+        >
+          <span className="inline-flex items-center gap-3 rounded-full border border-sky-500/30 bg-sky-500/10 px-5 py-2 text-xs font-mono uppercase tracking-[3px] text-sky-400">
+
+  <motion.div
+    animate={{
+      scale: [1, 1.5, 1],
+      opacity: [1, 0.2, 1],
+      boxShadow: [
+        "0 0 0px #0ea5e9",
+        "0 0 14px #0ea5e9",
+        "0 0 0px #0ea5e9",
+      ],
+    }}
+    transition={{
+      duration: 1.5,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="h-2.5 w-2.5 rounded-full bg-sky-400"
+  />
+
+  <span>Available For Premium Contract</span>
+
+</span>
+
+          <h1 className="mt-8 text-5xl font-black leading-tight lg:text-7xl">
+            I&apos;m{" "}
+            <span className="bg-linear-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
+              Mezba Morsalin
+            </span>
+          </h1>
+
+          <div className="mt-6 text-2xl font-semibold text-muted-foreground lg:text-3xl">
+           <TypeAnimation
+  sequence={[
+    "Frontend Developer",
+    2000,
+    "MERN Developer",
+    2000,
+    "Building Modern Web Applications",
+    2000,
+    "React & Next.js Developer",
+    2000,
+    "JavaScript Enthusiast",
+    2000,
+  ]}
+  wrapper="span"
+  speed={50}
+  repeat={Infinity}
+/>
+          </div>
+
+          <p className="mt-8 max-w-xl text-lg leading-8 text-muted-foreground">
+            I build modern scalable web applications using React, Next.js,
+            Node.js and MongoDB with beautiful user experiences.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="mt-10 flex gap-4">
+            <Button
+              size="lg"
+              className="rounded-full bg-linear-to-r from-blue-600 to-cyan-500 text-white shadow-[0_0_10px_rgba(14,165,233,.5)]"
+            >
+              Hire Me
+              <ArrowRight className="ml-2" />
+            </Button>
+
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-full"
+            >
+              <Download className="mr-2" />
+              Download CV
+            </Button>
+          </div>
+
+          {/* Social Icons */}
+          <div className="mt-10 flex gap-3">
+            <Button
+  size="icon"
+  variant="ghost"
+  className="h-12 w-12 rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_20px_rgba(14,165,233,.35)]"
+>
+  <FaGithub className="text-lg" />
+</Button>
+
+<Button
+  size="icon"
+  variant="ghost"
+  className="h-12 w-12 rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_20px_rgba(14,165,233,.35)]"
+>
+  <FaLinkedinIn className="text-lg" />
+</Button>
+
+<Button
+  size="icon"
+  variant="ghost"
+  className="h-12 w-12 rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_20px_rgba(14,165,233,.35)]"
+>
+  <FaXTwitter className="text-lg" />
+</Button>
+          </div>
+        </motion.div>
+{/* RIGHT CONTENT (IMAGE) */}
+<motion.div
+  initial={{ opacity: 0, x: 70 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+  className="relative flex items-center justify-center"
+>
+  {/* Background Glow */}
+  <motion.div
+    animate={{
+      opacity: [0.35, 0.8, 0.35],
+      scale: [1, 1.05, 1],
+    }}
+    transition={{
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="absolute h-[640px] w-[540px] rounded-[60px] bg-cyan-500/20 blur-[80px]"
+  />
+
+  {/* Rotating Gradient Border */}
+  <motion.div
+    animate={{ rotate: 360 }}
+    transition={{
+      duration: 12,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    className="absolute h-[610px] w-[510px] rounded-[42px] p-[2px]"
+    style={{
+      background:
+        "conic-gradient(from 0deg,#38bdf8,transparent 20%,transparent 45%,#0ea5e9 60%,transparent 75%,transparent 100%)",
+    }}
+  >
+    <div className="h-full w-full rounded-[42px] bg-background" />
+  </motion.div>
+
+  {/* Rotating Diamond */}
+  <motion.div
+    animate={{ rotate: [45, 405] }}
+    transition={{
+      duration: 20,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    className="absolute h-[520px] w-[520px] rounded-[70px] border border-sky-500/20"
+  />
+
+  {/* Image */}
+  <motion.div
+    animate={{
+      y: [-8, 8, -8],
+    }}
+    transition={{
+      duration: 5,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="relative z-10 rounded-[40px] border border-sky-500/30 bg-card p-3 shadow-[0_0_40px_rgba(14,165,233,.35)]"
+  >
+    <Image
+      src={bannerImg}
+      alt="Mezba"
+      width={470}
+      height={560}
+      priority
+      className="rounded-[30px]"
+    />
+  </motion.div>
+
+  {/* Experience Card */}
+  <motion.div
+    animate={{
+      y: [-10, 10, -10],
+    }}
+    transition={{
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="absolute right-0 top-12 z-20 rounded-3xl border border-slate-700 bg-card/90 px-6 py-4 backdrop-blur-xl shadow-[0_0_10px_rgba(14,165,233,.25)]"
+  >
+    <div className="flex items-center gap-3">
+      <Flame className="text-orange-500" />
+
+      <div>
+        <p className="text-xs text-muted-foreground">
+          Experience
+        </p>
+
+        <h3 className="text-xl font-bold">
+          3+ Years
+        </h3>
+      </div>
+    </div>
+  </motion.div>
+
+  {/* Projects Card */}
+  <motion.div
+    animate={{
+      y: [8, -8, 8],
+      rotate: [-1, 1, -1],
+    }}
+    transition={{
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="absolute -left-5 bottom-10 z-20 rounded-3xl border border-slate-700 bg-card/90 px-6 py-4 backdrop-blur-xl shadow-[0_0_10px_rgba(14,165,233,.25)]"
+  >
+    <div className="flex items-center gap-3">
+      <div className="text-red-600">
+        <Rocket/>
+      </div>
+
+      <div>
+        <p className="text-xs text-muted-foreground">
+          Projects
+        </p>
+
+        <h3 className="text-xl font-bold">
+          15+
+        </h3>
+      </div>
+    </div>
+  </motion.div>
+</motion.div>
+
+      </div>
+    </section>
+  );
+}
