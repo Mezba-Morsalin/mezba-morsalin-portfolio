@@ -4,6 +4,8 @@ import Cursor from "@/components/ui/Cursor";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { firaCode, inter } from "@/lib/font";
+import Loader from "@/components/Preloader";
+import PreloaderWrapper from "@/components/PreloaderWrapper";
 
 
 
@@ -21,6 +23,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col scroll-smooth">
         <ThemeProvider>
+          <PreloaderWrapper/>
         <Cursor/>
         <Navbar/>
           {children}
