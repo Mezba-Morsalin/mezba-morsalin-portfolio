@@ -4,8 +4,8 @@ import { motion, useMotionValue, useSpring } from "motion/react";
 import { useEffect, useState } from "react";
 
 export default function Cursor() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
 
   const x = useSpring(mouseX, {
     stiffness: 180,
@@ -25,30 +25,33 @@ export default function Cursor() {
       mouseY.set(e.clientY);
     };
 
+    const handleEnter = () => setHover(true);
+    const handleLeave = () => setHover(false);
+
     window.addEventListener("mousemove", move);
 
     const elements = document.querySelectorAll(
-      "button,a,.cursor-hover"
+      "a, button, .cursor-hover"
     );
 
     elements.forEach((el) => {
-      el.addEventListener("mouseenter", () => setHover(true));
-      el.addEventListener("mouseleave", () => setHover(false));
+      el.addEventListener("mouseenter", handleEnter);
+      el.addEventListener("mouseleave", handleLeave);
     });
 
     return () => {
       window.removeEventListener("mousemove", move);
 
       elements.forEach((el) => {
-        el.removeEventListener("mouseenter", () => setHover(true));
-        el.removeEventListener("mouseleave", () => setHover(false));
+        el.removeEventListener("mouseenter", handleEnter);
+        el.removeEventListener("mouseleave", handleLeave);
       });
     };
   }, []);
 
   return (
     <>
-      {/* Blue follower */}
+      {/* Blue Follower */}
       <motion.div
         style={{
           x,
@@ -57,15 +60,17 @@ export default function Cursor() {
           translateY: "-50%",
         }}
         animate={{
-          width: hover ? 80 : 36,
-          height: hover ? 80 : 36,
+          width: hover ? 90 : 48,
+          height: hover ? 90 : 48,
+          scale: hover ? 1.15 : 1,
+          opacity: hover ? 0.45 : 0.7,
         }}
         transition={{
           type: "spring",
-          stiffness: 300,
-          damping: 25,
+          stiffness: 320,
+          damping: 24,
         }}
-        className="pointer-events-none fixed top-0 left-0 z-[9998] rounded-full bg-blue-700/70 border border-blue-700"
+        className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full border border-blue-500 bg-blue-600/25 backdrop-blur-md"
       />
 
       {/* Yellow Dot */}
@@ -76,7 +81,7 @@ export default function Cursor() {
           translateX: "-50%",
           translateY: "-50%",
         }}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] h-4 w-4 rounded-full bg-yellow-300"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-[6px] w-[6px] rounded-full bg-yellow-300 shadow-[0_0_15px_rgba(253,224,71,1)]"
       />
     </>
   );

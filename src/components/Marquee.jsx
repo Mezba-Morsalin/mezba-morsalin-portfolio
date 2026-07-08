@@ -50,7 +50,7 @@ function TechCard({ tech }) {
         <div className="flex items-center gap-3 rounded-full bg-background px-6 py-3">
           <Image
             src={`/svg/${tech}.svg`}
-            alt={tech}
+            alt={names[tech]}
             width={24}
             height={24}
             className="h-6 w-6 object-contain dark:invert"
@@ -67,58 +67,70 @@ function TechCard({ tech }) {
 
 export default function TechMarquee() {
   return (
-    <section id="skills" className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-24">
-      {/* Heading */}
-      <div className="mx-auto mb-14 max-w-7xl px-6 text-center">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[8px] font-mono text-sky-500">
-          Technologies
-        </p>
+    <section  className="relative w-full overflow-hidden py-24">
+      <div className="mx-auto max-w-7xl">
+        {/* Heading */}
+        <div className="mb-14 px-6 text-center">
+          <p className="mb-3 font-mono text-sm font-semibold uppercase tracking-[8px] text-sky-500">
+            Technologies
+          </p>
 
-        <h2 className="text-4xl font-mono font-bold md:text-5xl">
-          Tools I Use
-        </h2>
+          <h2 className="text-4xl font-mono font-bold md:text-5xl">
+            Tools
+            <span className="bg-linear-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
+              {" "}
+              I Use
+            </span>
+          </h2>
+        </div>
+
+        {/* Marquee 1 */}
+        <div className="overflow-hidden">
+          <Marquee
+            autoFill
+            gradient={false}
+            speed={45}
+            pauseOnHover
+          >
+            {technologies.map((tech) => (
+              <TechCard key={tech} tech={tech} />
+            ))}
+          </Marquee>
+        </div>
+
+        <div className="my-8" />
+
+        {/* Marquee 2 */}
+        <div className="overflow-hidden">
+          <Marquee
+            autoFill
+            gradient={false}
+            direction="right"
+            speed={40}
+            pauseOnHover
+          >
+            {[...technologies].reverse().map((tech) => (
+              <TechCard key={tech} tech={tech} />
+            ))}
+          </Marquee>
+        </div>
+
+        <div className="my-8" />
+
+        {/* Marquee 3 */}
+        <div className="overflow-hidden">
+          <Marquee
+            autoFill
+            gradient={false}
+            speed={50}
+            pauseOnHover
+          >
+            {technologies.map((tech) => (
+              <TechCard key={tech} tech={tech} />
+            ))}
+          </Marquee>
+        </div>
       </div>
-
-        <Marquee
-          autoFill
-          gradient={false}
-          speed={45}
-          pauseOnHover
-          style={{ width: "100%" }}
-        >
-          {technologies.map((tech) => (
-            <TechCard key={tech} tech={tech} />
-          ))}
-        </Marquee>
-
-        <div className="my-8" />
-
-        <Marquee
-          autoFill
-          gradient={false}
-          direction="right"
-          speed={40}
-          pauseOnHover
-          style={{ width: "100%" }}
-        >
-          {[...technologies].reverse().map((tech) => (
-            <TechCard key={tech} tech={tech} />
-          ))}
-        </Marquee>
-
-        <div className="my-8" />
-
-        <Marquee
-          autoFill
-          gradient={false}
-          speed={50}
-          pauseOnHover
-          style={{ width: "100%" }}
-        >
-          {technologies.map((tech) => (
-            <TechCard key={tech} tech={tech} />
-          ))}
-        </Marquee>
     </section>
   );
 }

@@ -45,7 +45,7 @@ export default function About() {
             About Me
           </p>
 
-          <h2 className="text-4xl font-black md:text-5xl">
+          <h2 className="text-4xl font-mono font-black md:text-5xl">
   Building
   <span className="bg-linear-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
     {" "}Modern Web Solutions
@@ -64,7 +64,7 @@ export default function About() {
           >
             <div className="absolute h-[420px] w-[420px] rounded-full bg-cyan-500/20 blur-[100px]" />
 
-            <div className="relative rounded-[36px] border border-sky-500/20 bg-card p-3 shadow-[0_0_30px_rgba(14,165,233,.2)]">
+            <div className="relative rounded-[36px] border border-sky-500/40 bg-card p-3 shadow-[0_0_30px_rgba(14,165,233,.2)]">
               <Image
                 src="/assests/mezba2.png"
                 alt="Mezba"
@@ -109,7 +109,7 @@ export default function About() {
             </h3>
 
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
-              I'm <strong>Mezba Morsalin</strong>, a passionate MERN Stack Web
+              I&apos;m <strong>Mezba Morsalin</strong>, a passionate MERN Stack Web
               Developer who enjoys building responsive, scalable and modern web
               applications using React, Next.js, Node.js and MongoDB.
             </p>
@@ -125,7 +125,7 @@ export default function About() {
               {stats.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-3xl border border-sky-500/20 bg-card p-6 transition-all duration-300 hover:border-sky-500/50 hover:shadow-[0_0_20px_rgba(14,165,233,.15)]"
+                  className="rounded-3xl border border-sky-500/40 bg-card p-6 transition-all duration-300 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)]"
                 >
                   <h3 className="bg-linear-to-r from-sky-500 to-cyan-400 bg-clip-text text-3xl font-black text-transparent">
                     {item.number}
@@ -142,7 +142,7 @@ export default function About() {
                 size="lg"
                 className="rounded-full bg-linear-to-r font-mono from-blue-600 to-cyan-500 text-white"
               >
-                Let's Talk
+                Let&apos;s Talk
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
