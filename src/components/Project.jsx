@@ -66,8 +66,8 @@ const projects = [
       "Lenis",
     ],
 
-    github: "#",
-    live: "#",
+    github: "https://github.com/Mezba-Morsalin/mezba-morsalin-portfolio",
+    live: "https://mezba-portfolio.vercel.app",
   },
 ];
 
