@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import TechMarquee from "@/components/Marquee";
 import Projects from "@/components/Project";
@@ -18,6 +19,7 @@ export default function Home() {
       <Experience/>
       <Projects/>
       <Contact/>
+      <Footer/>
     </main>
   );
 }

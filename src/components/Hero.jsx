@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import {
+  FaFacebook,
   FaGithub,
   FaLinkedinIn,
   FaXTwitter,
@@ -184,30 +185,57 @@ export default function Hero() {
 
           {/* Social Icons */}
           <div className="mt-10 flex gap-3">
-            <Button
-  size="icon"
-  variant="ghost"
-  className="h-12 w-12 rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_20px_rgba(14,165,233,.35)]"
->
-  <FaGithub className="text-lg" />
-</Button>
+  <motion.a
+    href="https://github.com/Mezba-Morsalin"
+    target="_blank"
+    rel="noopener noreferrer"
+    whileHover={{
+      y: -6,
+      rotate: 6,
+      scale: 1.08,
+    }}
+    whileTap={{
+      scale: 0.92,
+    }}
+    className="flex h-12 w-12 items-center justify-center rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_25px_rgba(14,165,233,.4)]"
+  >
+    <FaGithub className="text-lg" />
+  </motion.a>
 
-<Button
-  size="icon"
-  variant="ghost"
-  className="h-12 w-12 rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_20px_rgba(14,165,233,.35)]"
->
-  <FaLinkedinIn className="text-lg" />
-</Button>
+  <motion.a
+    href="https://www.linkedin.com/in/mezba-morsalin"
+    target="_blank"
+    rel="noopener noreferrer"
+    whileHover={{
+      y: -6,
+      rotate: 6,
+      scale: 1.08,
+    }}
+    whileTap={{
+      scale: 0.92,
+    }}
+    className="flex h-12 w-12 items-center justify-center rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_25px_rgba(14,165,233,.4)]"
+  >
+    <FaLinkedinIn className="text-lg" />
+  </motion.a>
 
-<Button
-  size="icon"
-  variant="ghost"
-  className="h-12 w-12 rounded-full border border-sky-500/30 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_20px_rgba(14,165,233,.35)]"
->
-  <FaXTwitter className="text-lg" />
-</Button>
-          </div>
+  <motion.a
+    href="https://www.facebook.com/developermejbah"
+    target="_blank"
+    rel="noopener noreferrer"
+    whileHover={{
+      y: -6,
+      rotate: 6,
+      scale: 1.08,
+    }}
+    whileTap={{
+      scale: 0.92,
+    }}
+    className="flex h-12 w-12 items-center justify-center rounded-full border border-sky-500/40 bg-background/50 backdrop-blur-sm transition-all duration-300 hover:border-sky-400 hover:bg-sky-500/10 hover:text-sky-400 hover:shadow-[0_0_25px_rgba(14,165,233,.4)]"
+  >
+    <FaFacebook className="text-lg" />
+  </motion.a>
+</div>
         </motion.div>
 {/* RIGHT CONTENT (IMAGE) */}
 <motion.div
