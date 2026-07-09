@@ -22,7 +22,7 @@ const contacts = [
   {
     icon: MapPin,
     title: "Location",
-    value: "Sector-04, Uttara,Dhaka, Bangladesh",
+    value: "Sector-04, Uttara, Dhaka, Bangladesh",
   },
 ];
 
@@ -56,8 +56,7 @@ export default function Contact() {
       className="relative py-24 overflow-hidden"
     >
       {/* Background Glow */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
             x: [0, 80, 0],
@@ -87,10 +86,9 @@ export default function Contact() {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
 
         {/* Heading */}
-
         <motion.div
           initial={{
             opacity: 0,
@@ -112,23 +110,23 @@ export default function Contact() {
             Contact
           </p>
 
-          <h2 className="text-4xl font-bold font-mono md:text-5xl">
+          <h2 className="text-3xl font-bold font-mono sm:text-4xl md:text-5xl">
             Let&apos;s{" "}
             <span className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
               Work Together
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-2xl text-sm sm:text-base text-muted-foreground">
             Have a project in mind or want to collaborate?
             Feel free to reach out anytime.
           </p>
         </motion.div>
 
-        <div className="grid gap-12 lg:grid-cols-2">
+        {/* Main Layout Grid */}
+        <div className="grid gap-8 lg:gap-12 lg:grid-cols-2">
 
-          {/* LEFT SIDE */}
-
+          {/* LEFT SIDE (Contact Cards) */}
           <motion.div
             variants={container}
             initial="hidden"
@@ -137,7 +135,7 @@ export default function Contact() {
               once: true,
               amount: .2,
             }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6 w-full"
           >
             {contacts.map((contact) => {
               const Icon = contact.icon;
@@ -148,20 +146,24 @@ export default function Contact() {
                   variants={item}
                   whileHover={{
                     y: -6,
-                    scale: 1.02,
+                    scale: 1.01,
                   }}
-                  className="group flex items-center gap-5 rounded-3xl border border-sky-500/40 bg-card/60 p-6 backdrop-blur-xl transition-all duration-300 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.15)]"
+                 
+                  className="group flex items-center gap-4 sm:gap-5 rounded-3xl border border-sky-500/40 bg-card/60 p-4 sm:p-6 backdrop-blur-xl transition-all duration-300 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.15)] min-w-0"
                 >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-500/40 text-sky-500 transition-all duration-300 group-hover:bg-sky-500 group-hover:text-white">
-                    <Icon size={30} />
+                  {/* Responsive shrink adjustments on icon wrappers */}
+                  <div className="flex h-12 w-12 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-2xl bg-sky-500/40 text-sky-500 transition-all duration-300 group-hover:bg-sky-500 group-hover:text-white">
+                    <Icon className="h-5 w-5 sm:h-7 sm:w-7" />
                   </div>
 
-                  <div>
-                    <h3 className="font-mono text-lg font-bold">
+                  {/* Added min-w-0 to allow correct string containment */}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-mono text-base sm:text-lg font-bold">
                       {contact.title}
                     </h3>
 
-                    <p className="mt-1 text-muted-foreground">
+                    {/* Added break-words to handle long email/location strings gracefully without layout bursting */}
+                    <p className="mt-1 text-sm sm:text-base text-muted-foreground break-all sm:break-words">
                       {contact.value}
                     </p>
                   </div>
@@ -170,85 +172,82 @@ export default function Contact() {
             })}
           </motion.div>
 
+          {/* RIGHT SIDE (Form) */}
           <motion.form
-  variants={container}
-  initial="hidden"
-  whileInView="show"
-  viewport={{
-    once: true,
-    amount: 0.2,
-  }}
-  className="rounded-3xl border border-sky-500/40 bg-card/60 p-8 backdrop-blur-xl"
->
-  <motion.div variants={item} className="grid gap-6 md:grid-cols-2">
-    <div>
-      <label className="mb-2 block text-sm font-medium">
-        Your Name
-      </label>
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            className="rounded-3xl border border-sky-500/40 bg-card/60 p-5 sm:p-8 backdrop-blur-xl w-full"
+          >
+            <motion.div variants={item} className="grid gap-6 md:grid-cols-2">
+              <div>
+                <label className="mb-2 block text-sm font-medium">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+                />
+              </div>
 
-      <input
-        type="text"
-        placeholder="Full Name"
-        className="w-full rounded-xl border border-border bg-background px-5 py-4 outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
-      />
-    </div>
+              <div>
+                <label className="mb-2 block text-sm font-medium">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="w-full rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+                />
+              </div>
+            </motion.div>
 
-    <div>
-      <label className="mb-2 block text-sm font-medium">
-        Email Address
-      </label>
+            <motion.div variants={item} className="mt-6">
+              <label className="mb-2 block text-sm font-medium">
+                Subject
+              </label>
+              <input
+                type="text"
+                placeholder="Project Discussion"
+                className="w-full rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+              />
+            </motion.div>
 
-      <input
-        type="email"
-        placeholder="Email Address"
-        className="w-full rounded-xl border border-border bg-background px-5 py-4 outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
-      />
-    </div>
-  </motion.div>
+            <motion.div variants={item} className="mt-6">
+              <label className="mb-2 block text-sm font-medium">
+                Message
+              </label>
+              <textarea
+                rows={5}
+                placeholder="Write your message..."
+                className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+              />
+            </motion.div>
 
-  <motion.div variants={item} className="mt-6">
-    <label className="mb-2 block text-sm font-medium">
-      Subject
-    </label>
-
-    <input
-      type="text"
-      placeholder="Project Discussion"
-      className="w-full rounded-xl border border-border bg-background px-5 py-4 outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
-    />
-  </motion.div>
-
-  <motion.div variants={item} className="mt-6">
-    <label className="mb-2 block text-sm font-medium">
-      Message
-    </label>
-
-    <textarea
-      rows={6}
-      placeholder="Write your message..."
-      className="w-full resize-none rounded-xl border border-border bg-background px-5 py-4 outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
-    />
-  </motion.div>
-
-  <motion.div
-    variants={item}
-    className="mt-8"
-  >
-    <motion.button
-      whileHover={{
-        scale: 1.03,
-      }}
-      whileTap={{
-        scale: 0.97,
-      }}
-      type="submit"
-      className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
-    >
-      <Send size={20} />
-      Send Message
-    </motion.button>
-  </motion.div>
-</motion.form>
+            <motion.div
+              variants={item}
+              className="mt-8"
+            >
+              <motion.button
+                whileHover={{
+                  scale: 1.02,
+                }}
+                whileTap={{
+                  scale: 0.98,
+                }}
+                type="submit"
+                className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
+              >
+                <Send size={18} />
+                Send Message
+              </motion.button>
+            </motion.div>
+          </motion.form>
 
         </div>
       </div>

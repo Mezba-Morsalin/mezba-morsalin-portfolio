@@ -245,9 +245,8 @@ export default function Footer() {
           }}
           className="flex flex-col items-center justify-between gap-6 text-center lg:flex-row"
         >
-          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+          <p className="flex items-center gap-2 text-sm text-muted-foreground bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
             © {new Date().getFullYear()} Mezba Morsalin.
-            Made with
             <motion.span
               animate={{
                 scale: [1, 1.3, 1],
@@ -257,12 +256,8 @@ export default function Footer() {
                 repeat: Infinity,
               }}
             >
-              <Heart
-                size={16}
-                className="fill-red-500 text-red-500"
-              />
             </motion.span>
-            in Bangladesh.
+
           </p>
 
           <motion.div
