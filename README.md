@@ -1,4 +1,5 @@
 # 🌐 Mezba Morsalin | Portfolio Website
+<img width="1901" height="880" alt="mezbaPorfolio" src="https://github.com/user-attachments/assets/e460707f-6f18-41f1-9ad4-09341476f23d" />
 
 A modern, responsive, and interactive personal portfolio website built to showcase my skills, projects, experience, and journey as a Full Stack Web Developer.
 
