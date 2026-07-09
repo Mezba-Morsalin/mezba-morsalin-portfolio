@@ -12,17 +12,17 @@ const contacts = [
   {
     icon: Mail,
     title: "Email",
-    value: "mezbamorsalin@example.com",
+    value: "mezbamorsalin.dev@gmail.com",
   },
   {
     icon: Phone,
     title: "Phone",
-    value: "+880 1XXX-XXXXXX",
+    value: "+880 1730213466",
   },
   {
     icon: MapPin,
     title: "Location",
-    value: "Dhaka, Bangladesh",
+    value: "Sector-04, Uttara,Dhaka, Bangladesh",
   },
 ];
 
@@ -150,9 +150,9 @@ export default function Contact() {
                     y: -6,
                     scale: 1.02,
                   }}
-                  className="group flex items-center gap-5 rounded-3xl border border-sky-500/20 bg-card/60 p-6 backdrop-blur-xl transition-all duration-300 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.15)]"
+                  className="group flex items-center gap-5 rounded-3xl border border-sky-500/40 bg-card/60 p-6 backdrop-blur-xl transition-all duration-300 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.15)]"
                 >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-500/10 text-sky-500 transition-all duration-300 group-hover:bg-sky-500 group-hover:text-white">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sky-500/40 text-sky-500 transition-all duration-300 group-hover:bg-sky-500 group-hover:text-white">
                     <Icon size={30} />
                   </div>
 
@@ -178,7 +178,7 @@ export default function Contact() {
     once: true,
     amount: 0.2,
   }}
-  className="rounded-3xl border border-sky-500/20 bg-card/60 p-8 backdrop-blur-xl"
+  className="rounded-3xl border border-sky-500/40 bg-card/60 p-8 backdrop-blur-xl"
 >
   <motion.div variants={item} className="grid gap-6 md:grid-cols-2">
     <div>
@@ -188,7 +188,7 @@ export default function Contact() {
 
       <input
         type="text"
-        placeholder="John Doe"
+        placeholder="Full Name"
         className="w-full rounded-xl border border-border bg-background px-5 py-4 outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
       />
     </div>
@@ -200,7 +200,7 @@ export default function Contact() {
 
       <input
         type="email"
-        placeholder="john@example.com"
+        placeholder="Email Address"
         className="w-full rounded-xl border border-border bg-background px-5 py-4 outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
       />
     </div>
@@ -242,7 +242,7 @@ export default function Contact() {
         scale: 0.97,
       }}
       type="submit"
-      className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-500 px-8 py-4 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
+      className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
     >
       <Send size={20} />
       Send Message

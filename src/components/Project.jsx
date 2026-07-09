@@ -92,7 +92,7 @@ export default function Projects() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -left-80 top-0 h-[700px] w-[700px] rounded-full bg-sky-500/20 blur-[180px]"
+          className="absolute -left-80 top-0 h-[700px] w-[700px] rounded-full bg-sky-500/40 blur-[180px]"
         />
 
         <motion.div
@@ -177,7 +177,7 @@ export default function Projects() {
               whileHover={{
                 y: -12,
               }}
-              className="group overflow-hidden rounded-3xl border border-sky-500/20 bg-card/60 backdrop-blur-xl"
+              className="group overflow-hidden rounded-3xl border shadow border-sky-500/40 bg-card/60 backdrop-blur-xl"
             >
 
               {/* Image */}
@@ -192,7 +192,7 @@ export default function Projects() {
                   className="h-[240px] w-full object-cover transition duration-700 group-hover:scale-110"
                 />
 
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+                <div className="" />
 
               </div>
 
