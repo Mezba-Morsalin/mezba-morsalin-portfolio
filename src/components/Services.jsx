@@ -111,7 +111,7 @@ export default function Services() {
                   stiffness: 260,
                   damping: 18,
                 }}
-                className="rounded-3xl border border-sky-500/40 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)] bg-card/50 p-8 backdrop-blur-md"
+                className="rounded-3xl border border-sky-500/40 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)] shadow bg-card/50 p-8 backdrop-blur-md"
               >
                 <motion.div
                   whileHover={{
