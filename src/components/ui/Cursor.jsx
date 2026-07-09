@@ -63,7 +63,7 @@ export default function Cursor() {
           width: hover ? 90 : 48,
           height: hover ? 90 : 48,
           scale: hover ? 1.15 : 1,
-          opacity: hover ? 0.45 : 0.7,
+          opacity: hover ? 0.50 : 0.7,
         }}
         transition={{
           type: "spring",
@@ -74,15 +74,26 @@ export default function Cursor() {
       />
 
       {/* Yellow Dot */}
-      <motion.div
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] h-[6px] w-[6px] rounded-full bg-yellow-300 shadow-[0_0_15px_rgba(253,224,71,1)]"
-      />
+      {/* Yellow Dot */}
+<motion.div
+  style={{
+    x: mouseX,
+    y: mouseY,
+    translateX: "-50%",
+    translateY: "-50%",
+  }}
+  animate={{
+    width: hover ? 8 : 16,
+    height: hover ? 8 : 16,
+    scale: hover ? 0.8 : 1,
+  }}
+  transition={{
+    type: "spring",
+    stiffness: 500,
+    damping: 30,
+  }}
+  className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-yellow-300 shadow-[0_0_15px_rgba(253,224,71,1)]"
+/>
     </>
   );
 }

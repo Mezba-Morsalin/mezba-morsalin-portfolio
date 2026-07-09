@@ -9,6 +9,7 @@ export default function SmoothScroll({ children }) {
       duration: 1.2,
       smoothWheel: true,
       touchMultiplier: 2,
+      anchors: true,
     });
 
     let frameId;

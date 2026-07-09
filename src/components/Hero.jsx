@@ -82,7 +82,7 @@ export default function Hero() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -bottom-[600px] left-1/2 h-[1300px] w-[1300px] -translate-x-1/2 rounded-full bg-blue-600 blur-[260px]"
+          className="absolute -left-[320px] -top-[180px] h-[700px] w-[700px] rounded-full bg-sky-500 blur-[120px] will-change-transform"
         />
 
         {/* Grid Overlay */}

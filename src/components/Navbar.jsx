@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Menu,
@@ -29,7 +29,39 @@ const menus = [
 
 export default function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [active, setActive] = useState("Home");
+
+const [active, setActive] = useState("Home");
+
+useEffect(() => {
+  const sections = menus
+    .map((menu) => document.querySelector(menu.href))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const menu = menus.find(
+          (item) => item.href.slice(1) === entry.target.id
+        );
+
+        if (menu) {
+          setActive((prev) =>
+            prev !== menu.name ? menu.name : prev
+          );
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  return () => observer.disconnect();
+}, []);
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-xl">
