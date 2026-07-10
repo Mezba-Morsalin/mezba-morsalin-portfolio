@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { firaCode, inter } from "@/lib/font";
 import PreloaderWrapper from "@/components/PreloaderWrapper";
 import SmoothScroll from "@/components/SmoothScroll";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "Mezba Morsalin | Portfolio",
@@ -25,6 +26,10 @@ export default function RootLayout({ children }) {
             <Cursor />
             <Navbar />
             {children}
+            <Toaster position="top-center"
+              richColors
+              closeButton
+              duration={3000}/>
           </SmoothScroll>
         </ThemeProvider>
       </body>

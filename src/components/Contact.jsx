@@ -6,7 +6,10 @@ import {
   Phone,
   MapPin,
   Send,
+  Loader2,
 } from "lucide-react";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const contacts = [
   {
@@ -50,6 +53,70 @@ const item = {
 };
 
 export default function Contact() {
+  const [loading, setLoading] = useState(false);
+
+const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
+
+const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (
+    !formData.name.trim() ||
+    !formData.email.trim() ||
+    !formData.subject.trim() ||
+    !formData.message.trim()
+  ) {
+    toast.error("Please fill in all fields.");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message || "Failed to send message.");
+    }
+
+    toast.success("Message sent successfully!", {
+      description:
+        "Thank you for reaching out. I'll get back to you as soon as possible.",
+    });
+
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  } catch (error) {
+    toast.error("Failed to send message.", {
+      description: error.message || "Please try again later.",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <section
       id="contact"
@@ -173,7 +240,7 @@ export default function Contact() {
           </motion.div>
 
           {/* RIGHT SIDE (Form) */}
-          <motion.form
+          <motion.form onSubmit={handleSubmit}
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -189,6 +256,9 @@ export default function Contact() {
                   Your Name
                 </label>
                 <input
+                onChange={handleChange}
+                value={formData.name}
+                name="name"
                   type="text"
                   placeholder="Full Name"
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
@@ -200,6 +270,9 @@ export default function Contact() {
                   Email Address
                 </label>
                 <input
+                onChange={handleChange}
+                value={formData.email}
+                name="email"
                   type="email"
                   placeholder="Email Address"
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
@@ -212,6 +285,9 @@ export default function Contact() {
                 Subject
               </label>
               <input
+              onChange={handleChange}
+              value={formData.subject}
+              name="subject"
                 type="text"
                 placeholder="Project Discussion"
                 className="w-full rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
@@ -223,6 +299,9 @@ export default function Contact() {
                 Message
               </label>
               <textarea
+              onChange={handleChange}
+              value={formData.message}
+              name="message"
                 rows={5}
                 placeholder="Write your message..."
                 className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 sm:px-5 sm:py-4 text-sm sm:text-base outline-none transition-all duration-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
@@ -233,19 +312,29 @@ export default function Contact() {
               variants={item}
               className="mt-8"
             >
-              <motion.button
-                whileHover={{
-                  scale: 1.02,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                type="submit"
-                className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
-              >
-                <Send size={18} />
-                Send Message
-              </motion.button>
+             <motion.button
+  whileHover={{
+    scale: 1.02,
+  }}
+  whileTap={{
+    scale: 0.98,
+  }}
+  type="submit"
+  disabled={loading}
+  className="flex w-full items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)] disabled:cursor-not-allowed disabled:opacity-70"
+>
+  {loading ? (
+    <>
+      <Loader2 className="h-5 w-5 animate-spin" />
+      Sending...
+    </>
+  ) : (
+    <>
+      <Send size={18} />
+      Send Message
+    </>
+  )}
+</motion.button>
             </motion.div>
           </motion.form>
 
