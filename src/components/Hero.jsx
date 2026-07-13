@@ -20,6 +20,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import bannerImg from "../../public/assests/MezbaMorsalin.png";
+import Link from "next/link";
 
 const TypeAnimation = dynamic(
   () =>
@@ -119,7 +120,7 @@ export default function Hero() {
 
           <h1 className="mt-8 text-4xl font-black leading-tight sm:text-5xl lg:text-7xl">
             I&apos;m{" "}
-            <span className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
               Mezba Morsalin
             </span>
           </h1>
@@ -151,22 +152,29 @@ export default function Hero() {
 
           {/* Action Buttons */}
           <div className="mt-10 flex flex-wrap gap-4">
-            <Button
+            <a href="#contact">
+              <Button
               size="lg"
-              className="rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-[0_0_10px_rgba(14,165,233,.5)] flex items-center justify-center gap-2 w-full sm:w-auto"
+              className="rounded-full bg-linear-to-r from-blue-600 to-cyan-500 text-white shadow-[0_0_10px_rgba(14,165,233,.5)] flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <span>With Hire Me</span>
               <ArrowRight className="h-4 w-4" />
             </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full flex items-center justify-center gap-2 w-full sm:w-auto"
-            >
-              <Download className="h-4 w-4" />
-              <span>Download CV</span>
-            </Button>
+            </a>
+<Link
+  href="/cv/Mezba-Morsalin.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button
+    size="lg"
+    variant="outline"
+    className="rounded-full flex items-center justify-center gap-2 w-full sm:w-auto"
+  >
+    <Download className="h-4 w-4" />
+    <span>View Resume</span>
+  </Button>
+</Link>
           </div>
 
           {/* Social Icons */}

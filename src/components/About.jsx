@@ -135,26 +135,6 @@ export default function About() {
                 </div>
               ))}
             </div>
-
-            {/* Buttons */}
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button
-                size="lg"
-                className="rounded-full bg-linear-to-r font-mono from-blue-600 to-cyan-500 text-white"
-              >
-                Let&apos;s Talk
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full"
-              >
-                <Download className="mr-2 h-5 w-5 font-mono" />
-                Download CV
-              </Button>
-            </div>
           </motion.div>
         </div>
       </div>
