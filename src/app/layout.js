@@ -8,8 +8,9 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "Mezba Morsalin | Portfolio",
-  description: "Full Stack Web Developer Portfolio",
+  title: "Mezba Morsalin | MERN Stack Developer",
+  description:
+    "Portfolio of Mezba Morsalin, a MERN Stack Developer specializing in React, Next.js, Node.js, MongoDB, and modern web application development.",
 };
 
 export default function RootLayout({ children }) {
