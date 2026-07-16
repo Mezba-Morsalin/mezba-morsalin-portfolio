@@ -10,7 +10,7 @@ import { Toaster } from "sonner";
 export const metadata = {
   title: "Mezba Morsalin | MERN Stack Developer",
   description:
-    "Portfolio of Mezba Morsalin, a MERN Stack Developer specializing in React, Next.js, Node.js, MongoDB, and modern web application development.",
+    "Portfolio of Mezba Morsalin, a MERN Stack Developer specializing in React, Next.js, Node.js, Express.js MongoDB, and modern web application development.",
 };
 
 export default function RootLayout({ children }) {
