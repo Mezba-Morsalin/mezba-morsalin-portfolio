@@ -102,23 +102,24 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-bold leading-tight md:text-4xl">
-              Creating Modern,
-              <br />
-              Fast & Beautiful Web Applications.
-            </h3>
+           <h3 className="text-3xl font-bold leading-tight md:text-4xl">
+  Crafting Modern,
+  <br />
+  Scalable Web Applications.
+</h3>
 
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
-              I&apos;m <strong>Mezba Morsalin</strong>, a passionate MERN Stack Web
-              Developer who enjoys building responsive, scalable and modern web
-              applications using React, Next.js, Node.js and MongoDB.
-            </p>
+  I&apos;m <strong>Mezba Morsalin</strong>, a passionate MERN Stack Developer
+  specializing in modern web technologies, including React, Next.js, Node.js, Express.js
+  and MongoDB.
+</p>
 
-            <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              I love turning ideas into real products through clean code,
-              beautiful interfaces and smooth user experiences. Every project I
-              build helps me improve my skills and explore new technologies.
-            </p>
+<p className="mt-5 text-lg leading-8 text-muted-foreground">
+  I&apos;m passionate about transforming ideas into reliable, user-friendly web
+  applications through clean architecture, scalable solutions, and exceptional
+  user experiences. Every project is an opportunity to learn, grow, and create
+  something meaningful.
+</p>
 
             {/* Stats */}
             <div className="mt-10 grid grid-cols-2 gap-5">

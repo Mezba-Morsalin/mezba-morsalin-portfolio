@@ -147,8 +147,7 @@ export default function Hero() {
           </div>
 
           <p className="mt-6 max-w-xl text-base sm:text-lg leading-8 text-muted-foreground">
-            I build modern scalable web applications using React, Next.js,
-            Node.js and MongoDB with beautiful user experiences.
+            I craft modern, scalable web applications using React, Next.js, Node.js, and MongoDB, combining clean code with intuitive and engaging user experiences.
           </p>
 
           {/* Action Buttons */}
@@ -158,7 +157,7 @@ export default function Hero() {
               size="lg"
               className="rounded-full bg-linear-to-r from-blue-600 to-cyan-500 text-white shadow-[0_0_10px_rgba(14,165,233,.5)] flex items-center justify-center gap-2 w-full sm:w-auto"
             >
-              <span>With Hire Me</span>
+              <span>Hire Me</span>
               <ArrowRight className="h-4 w-4" />
             </Button>
             </a>

@@ -13,25 +13,25 @@ const services = [
     title: "Frontend Development",
     icon: Globe,
     description:
-      "Building modern, responsive and interactive user interfaces with React, Next.js and Tailwind CSS.",
+      "Building fast, responsive, and accessible user interfaces with React, Next.js, and Tailwind CSS.",
   },
   {
     title: "Backend Development",
     icon: Database,
     description:
-      "Developing secure REST APIs, authentication systems and scalable server-side applications using Node.js, Express and MongoDB.",
+      "Developing secure REST APIs, authentication systems, and scalable backend services using Node.js, Express, and MongoDB.",
   },
   {
     title: "Responsive Design",
     icon: Smartphone,
     description:
-      "Creating pixel-perfect responsive websites optimized for desktop, tablet and mobile devices.",
+      "Designing responsive, user-friendly interfaces that deliver a seamless experience across all devices.",
   },
   {
     title: "Deployment",
     icon: Rocket,
     description:
-      "Deploying production-ready applications using Vercel, Netlify and modern deployment workflows.",
+      "Deploying and maintaining production-ready applications with Vercel, Netlify, and modern deployment workflows.",
   },
 ];
 
