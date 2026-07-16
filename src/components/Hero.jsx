@@ -126,23 +126,24 @@ export default function Hero() {
           </h1>
 
           <div className="mt-6 text-xl font-semibold text-muted-foreground sm:text-2xl lg:text-3xl min-h-[40px]">
-            <TypeAnimation
-              sequence={[
-                "Frontend Developer",
-                2000,
-                "MERN Developer",
-                2000,
-                "Building Modern Web Applications",
-                2000,
-                "React & Next.js Developer",
-                2000,
-                "JavaScript Enthusiast",
-                2000,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-            />
+<TypeAnimation
+  sequence={[
+    "MERN Stack Developer",
+    2000,
+    "React & Next.js Developer",
+    2000,
+    "JavaScript Enthusiast",
+    2000,
+    "Building Modern Web Apps",
+    2000,
+    "Crafting User Experiences",
+    2000,
+  ]}
+  wrapper="span"
+  speed={55}
+  deletionSpeed={70}
+  repeat={Infinity}
+/>
           </div>
 
           <p className="mt-6 max-w-xl text-base sm:text-lg leading-8 text-muted-foreground">
