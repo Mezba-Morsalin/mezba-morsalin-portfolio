@@ -2,10 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowRight, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-import aboutImg from "../../public/assests/mezba2.png"
 
 const stats = [
   {
@@ -66,7 +62,7 @@ export default function About() {
 
             <div className="relative rounded-[36px] border border-sky-500/40 bg-card p-3 shadow-[0_0_30px_rgba(14,165,233,.2)]">
               <Image
-                src="/assests/mezba2.png"
+                src="/assests/MezbaMorsalin.png"
                 alt="Mezba"
                 width={430}
                 height={520}

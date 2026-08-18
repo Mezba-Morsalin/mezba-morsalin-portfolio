@@ -19,7 +19,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 
-import bannerImg from "../../public/assests/MezbaMorsalin.png";
+import bannerImg from "../../public/assests/mezba1.png";
 import Link from "next/link";
 
 const TypeAnimation = dynamic(
