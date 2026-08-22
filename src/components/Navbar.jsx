@@ -29,50 +29,44 @@ const menus = [
 
 export default function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [active, setActive] = useState("Home");
 
-const [active, setActive] = useState("Home");
+  useEffect(() => {
+    const sections = menus
+      .map((menu) => document.querySelector(menu.href))
+      .filter(Boolean);
 
-useEffect(() => {
-  const sections = menus
-    .map((menu) => document.querySelector(menu.href))
-    .filter(Boolean);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        const menu = menus.find(
-          (item) => item.href.slice(1) === entry.target.id
-        );
-
-        if (menu) {
-          setActive((prev) =>
-            prev !== menu.name ? menu.name : prev
+          const menu = menus.find(
+            (item) => item.href.slice(1) === entry.target.id
           );
-        }
-      });
-    },
-    {
-      threshold: 0.5,
-    }
-  );
 
-  sections.forEach((section) => observer.observe(section));
+          if (menu) {
+            setActive((prev) => (prev !== menu.name ? menu.name : prev));
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
 
-  return () => observer.disconnect();
-}, []);
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-border bg-background/95 lg:bg-background/80 lg:backdrop-blur-xl transform-gpu">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <Link href="#home" className="flex items-center gap-3">
-
           <h2 className="text-xl font-bold font-mono bg-linear-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
-            Mezba
-            <span className="text-sky-500">.</span>
-            Morsalin
+            Mezba<span className="text-sky-500">.</span>Morsalin
           </h2>
         </Link>
 
@@ -83,11 +77,11 @@ useEffect(() => {
               <a
                 href={item.href}
                 onClick={() => setActive(item.name)}
-                className={`relative font-mono text-[15px] font-medium tracking-wide transition-colors duration-300 ${
-  active === item.name
-    ? "text-foreground"
-    : "text-muted-foreground hover:text-foreground"
-}`}
+                className={`relative font-mono text-[15px] font-medium tracking-wide transition-colors duration-200 ${
+                  active === item.name
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 {item.name}
 
@@ -121,41 +115,39 @@ useEffect(() => {
 
         {/* Mobile Toggle */}
         <Button
-  size="icon"
-  variant="outline"
-  onClick={() => setMobileMenu(!mobileMenu)}
-  className="rounded-xl lg:hidden"
->
-  {mobileMenu ? <X size={26} /> : <Menu size={26} />}
-</Button>
+          size="icon"
+          variant="outline"
+          onClick={() => setMobileMenu(!mobileMenu)}
+          aria-label="Toggle Menu"
+          className="rounded-xl lg:hidden"
+        >
+          {mobileMenu ? <X size={26} /> : <Menu size={26} />}
+        </Button>
       </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenu && (
           <motion.div
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden border-t border-border bg-background lg:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="overflow-hidden border-t border-border bg-background lg:hidden will-change-transform"
           >
             <div className="space-y-2 p-6">
-              {menus.map((item, index) => {
+              {menus.map((item) => {
                 const Icon = item.icon;
 
                 return (
-                  <motion.a
+                  <a
                     key={item.name}
                     href={item.href}
-                    initial={{ opacity: 0, x: -25 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
                     onClick={() => {
                       setActive(item.name);
                       setMobileMenu(false);
                     }}
-                    className={`flex items-center gap-4 rounded-xl px-4 py-3 transition ${
+                    className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-colors duration-150 ${
                       active === item.name
                         ? "bg-sky-500 text-white"
                         : "text-foreground hover:bg-muted"
@@ -163,9 +155,9 @@ useEffect(() => {
                   >
                     <Icon size={20} />
                     <span className="font-mono text-[15px] font-medium tracking-wide">
-  {item.name}
-</span>
-                  </motion.a>
+                      {item.name}
+                    </span>
+                  </a>
                 );
               })}
 
@@ -175,6 +167,7 @@ useEffect(() => {
 
               <a
                 href="#contact"
+                onClick={() => setMobileMenu(false)}
                 className="mt-4 font-mono block rounded-xl bg-linear-to-r from-blue-600 to-cyan-400 px-5 py-3 text-center font-semibold text-white"
               >
                 Hire Me
