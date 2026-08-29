@@ -13,8 +13,8 @@ const stats = [
     title: "Technologies",
   },
   {
-    number: "MERN",
-    title: "Tech Stack",
+    number: "React",
+    title: "Core Expertise",
   },
   {
     number: "∞",
@@ -104,17 +104,19 @@ export default function About() {
   Scalable Web Applications.
 </h3>
 
-            <p className="mt-8 text-lg leading-8 text-muted-foreground">
-  I&apos;m <strong>Mezba Morsalin</strong>, a passionate MERN Stack Developer
-  specializing in modern web technologies, including React, Next.js, Node.js, Express.js
-  and MongoDB.
+<p className="mt-8 text-lg leading-8 text-muted-foreground">
+  I&apos;m <strong>Mezba Morsalin</strong>, a passionate Frontend Developer
+  specializing in modern web technologies, including React.js, Next.js,
+  JavaScript, and Tailwind CSS. I also have experience working with Node.js,
+  Express.js, and MongoDB to build complete web solutions.
 </p>
 
 <p className="mt-5 text-lg leading-8 text-muted-foreground">
-  I&apos;m passionate about transforming ideas into reliable, user-friendly web
-  applications through clean architecture, scalable solutions, and exceptional
-  user experiences. Every project is an opportunity to learn, grow, and create
-  something meaningful.
+  I&apos;m passionate about transforming ideas into modern, responsive, and
+  user-friendly web applications through clean code, thoughtful design, and
+  seamless user experiences. I continuously explore new technologies, improve
+  my skills, and strive to build meaningful digital experiences that are
+  both functional and visually engaging.
 </p>
 
             {/* Stats */}

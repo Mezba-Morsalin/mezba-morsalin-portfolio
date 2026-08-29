@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 import {
   ArrowRight,
@@ -21,18 +21,27 @@ import { Button } from "@/components/ui/button";
 
 import bannerImg from "../../public/assests/mezba1.png";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const TypeAnimation = dynamic(
-  () =>
-    import("react-type-animation").then(
-      (mod) => mod.TypeAnimation
-    ),
-  {
-    ssr: false,
-  }
-);
 
 export default function Hero() {
+   const texts = [
+    "Frontend Developer",
+    "React.js & Next.js Developer",
+    "JavaScript Enthusiast",
+    "Building Modern Web Experiences",
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % texts.length);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [texts.length]);
+
   return (
     <section
       id="home"
@@ -125,26 +134,23 @@ export default function Hero() {
             </span>
           </h1>
 
-          <div className="mt-6 text-xl font-semibold text-muted-foreground sm:text-2xl lg:text-3xl min-h-[40px]">
-<TypeAnimation
-  sequence={[
-    "MERN Stack Developer",
-    2000,
-    "React & Next.js Developer",
-    2000,
-    "JavaScript Enthusiast",
-    2000,
-    "Building Modern Web Apps",
-    2000,
-    "Crafting User Experiences",
-    2000,
-  ]}
-  wrapper="span"
-  speed={55}
-  deletionSpeed={70}
-  repeat={Infinity}
-/>
-          </div>
+          <div className="mt-6 h-[40px] overflow-hidden text-xl font-semibold text-muted-foreground sm:text-2xl lg:text-3xl">
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={currentIndex}
+      initial={{ y: "100%", opacity: 0 }}
+      animate={{ y: "0%", opacity: 1 }}
+      exit={{ y: "-100%", opacity: 0 }}
+      transition={{
+        duration: 0.55,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="h-[40px]"
+    >
+      {texts[currentIndex]}
+    </motion.div>
+  </AnimatePresence>
+</div>
 
           <p className="mt-6 max-w-xl text-base sm:text-lg leading-8 text-muted-foreground">
             I craft modern, scalable web applications using React, Next.js, Node.js, and MongoDB, combining clean code with intuitive and engaging user experiences.

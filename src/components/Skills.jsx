@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "motion/react";
@@ -13,49 +14,49 @@ const skillCategories = [
     title: "Frontend",
     icon: MonitorSmartphone,
     skills: [
-      "React",
-      "Next.js",
-      "JavaScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Shadcn UI",
-      "HeroUI",
+      { name: "React", icon: "devicon-react-original colored" },
+      { name: "Next.js", icon: "devicon-nextjs-plain" },
+      { name: "JavaScript", icon: "devicon-javascript-plain colored" },
+      { name: "Tailwind CSS", icon: "devicon-tailwindcss-original colored" },
+      { name: "Framer Motion", icon: "devicon-framermotion-original" },
+      { name: "Shadcn UI", icon: null },
+      { name: "HeroUI", icon: null },
     ],
   },
   {
     title: "Backend",
     icon: Database,
     skills: [
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Better Auth",
-      "REST API",
-      "JWT",
+      { name: "Node.js", icon: "devicon-nodejs-plain colored" },
+      { name: "Express.js", icon: "devicon-express-original" },
+      { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
+      { name: "Better Auth", icon: null },
+      { name: "REST API", icon: null },
+      { name: "JWT", icon: null },
     ],
   },
   {
     title: "Tools",
     icon: Wrench,
     skills: [
-      "Git",
-      "GitHub",
-      "Postman",
-      "Figma",
-      "Vercel",
-      "Netlify",
+      { name: "Git", icon: "devicon-git-plain colored" },
+      { name: "GitHub", icon: "devicon-github-original" },
+      { name: "Postman", icon: "devicon-postman-plain colored" },
+      { name: "Figma", icon: "devicon-figma-plain colored" },
+      { name: "Vercel", icon: "devicon-vercel-original" },
+      { name: "Netlify", icon: "devicon-netlify-plain colored" },
     ],
   },
   {
     title: "Currently Learning",
     icon: Code2,
     skills: [
-      "TypeScript",
-      "PostgreSQL",
-      "Docker",
-      "AWS",
-      "System Design",
-      "CI/CD",
+      { name: "TypeScript", icon: "devicon-typescript-plain colored" },
+      { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
+      { name: "Docker", icon: "devicon-docker-plain colored" },
+      { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark colored" },
+      { name: "System Design", icon: null },
+      { name: "CI/CD", icon: "devicon-githubactions-plain colored" },
     ],
   },
 ];
@@ -99,7 +100,7 @@ export default function Skills() {
             Expertise
           </p>
 
-          <h2 className="text-4xl font-bold font-mono md:text-5xl">
+          <h2 className="font-mono text-4xl font-bold md:text-5xl">
             My{" "}
             <span className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
               Skills
@@ -136,7 +137,7 @@ export default function Skills() {
                   stiffness: 250,
                   damping: 18,
                 }}
-                className="rounded-3xl border border-sky-500/40 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)] bg-card/50 p-7 backdrop-blur-md"
+                className="rounded-3xl border border-sky-500/40 bg-card/50 p-7 backdrop-blur-md hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)]"
               >
                 <motion.div
                   whileHover={{
@@ -151,14 +152,14 @@ export default function Skills() {
                   <Icon size={28} />
                 </motion.div>
 
-                <h3 className="mb-6 text-xl font-bold font-mono">
+                <h3 className="mb-6 font-mono text-xl font-bold">
                   {category.title}
                 </h3>
 
                 <div className="flex flex-wrap gap-3">
                   {category.skills.map((skill) => (
                     <motion.span
-                      key={skill}
+                      key={skill.name}
                       whileHover={{
                         scale: 1.08,
                         backgroundColor: "#0ea5e9",
@@ -167,9 +168,18 @@ export default function Skills() {
                       transition={{
                         duration: 0.2,
                       }}
-                      className="cursor-default rounded-full border border-sky-500/40 bg-background px-4 py-2 text-sm font-medium"
+                      className="flex cursor-default items-center gap-2 rounded-full border border-sky-500/40 bg-background px-4 py-2 text-sm font-medium"
                     >
-                      {skill}
+                      {skill.icon ? (
+                        <i
+                          className={`${skill.icon} text-lg`}
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <Code2 size={16} />
+                      )}
+
+                      <span>{skill.name}</span>
                     </motion.span>
                   ))}
                 </div>

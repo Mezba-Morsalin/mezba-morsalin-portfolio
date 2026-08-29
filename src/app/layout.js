@@ -1,4 +1,5 @@
 import "./globals.css";
+
 import Cursor from "@/components/ui/Cursor";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
@@ -8,9 +9,9 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "Mezba Morsalin | MERN Stack Developer",
+  title: "Mezba Morsalin | Frontend Developer",
   description:
-    "Portfolio of Mezba Morsalin, a MERN Stack Developer specializing in React, Next.js, Node.js, Express.js MongoDB, and modern web application development.",
+    "Portfolio of Mezba Morsalin, a Frontend Developer specializing in React, Next.js, Node.js, Express.js, MongoDB, and modern web application development.",
 };
 
 export default function RootLayout({ children }) {
@@ -20,17 +21,23 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${inter.variable} ${firaCode.variable} h-full antialiased`}
     >
+      <head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" /></head>
+
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
           <SmoothScroll>
             <PreloaderWrapper />
             <Cursor />
             <Navbar />
+
             {children}
-            <Toaster position="top-center"
+
+            <Toaster
+              position="top-center"
               richColors
               closeButton
-              duration={3000}/>
+              duration={3000}
+            />
           </SmoothScroll>
         </ThemeProvider>
       </body>

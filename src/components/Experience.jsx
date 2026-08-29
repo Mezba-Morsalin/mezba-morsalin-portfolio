@@ -21,21 +21,21 @@ const journey = [
     title: "Frontend Development",
     icon: MonitorSmartphone,
     description:
-      "Built responsive and interactive web applications using React, Next.js, Tailwind CSS and modern UI libraries.",
+      "Built responsive and interactive web interfaces using React, Tailwind CSS, Next.js and modern UI libraries.",
   },
   {
     year: "2025",
     title: "Backend Development",
     icon: Database,
     description:
-      "Learned Node.js, Express.js, MongoDB, Better Auth, REST APIs and authentication to become a Full Stack Developer.",
+      "Expanded my skills into backend development by learning Node.js, Express.js, MongoDB, REST APIs and authentication.",
   },
   {
     year: "2026",
     title: "Full Stack Projects",
     icon: Rocket,
     description:
-      "Developed production-ready MERN applications, dashboards, authentication systems and deployed projects using Vercel.",
+      "Built real-world web applications by combining modern frontend technologies with Node.js, Express.js and MongoDB, focusing on clean, responsive and production-ready experiences.",
   },
 ];
 

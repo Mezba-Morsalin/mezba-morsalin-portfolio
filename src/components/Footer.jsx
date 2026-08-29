@@ -131,11 +131,11 @@ export default function Footer() {
             </h2>
           </Link>
 
-          <p className="mx-auto mt-6 max-w-2xl leading-8 text-muted-foreground">
-            Passionate MERN Stack Developer focused on crafting
-            beautiful, scalable and high-performance web applications
-            using modern technologies.
-          </p>
+<p className="mx-auto mt-6 max-w-2xl leading-8 text-muted-foreground">
+  Passionate Frontend Developer focused on crafting beautiful, responsive
+  and high-performance web experiences with modern frontend technologies
+  and full-stack capabilities.
+</p>
         </motion.div>
                 {/* Navigation */}
 
