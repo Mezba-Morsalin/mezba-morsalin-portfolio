@@ -168,7 +168,7 @@ export default function Hero() {
             </Button>
             </a>
 <Link
-  href="/cv/Mezba-Morsalin.pdf"
+  href="https://drive.google.com/file/d/1PgoybYpterC7y1HwvRslK0A75jE502Wb/view?usp=sharing"
   target="_blank"
   rel="noopener noreferrer"
 >
@@ -178,7 +178,7 @@ export default function Hero() {
     className="rounded-full flex items-center justify-center gap-2 w-full sm:w-auto"
   >
     <Download className="h-4 w-4" />
-    <span>View Resume</span>
+    <span>Download Resume</span>
   </Button>
 </Link>
           </div>
