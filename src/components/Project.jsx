@@ -51,20 +51,20 @@ const projects = [
   },
 
   {
-    title: "Portfolio Website",
-    image: "/assests/mezbaPorfolio.png",
-    description:
-      "Personal portfolio with premium animations, Lenis smooth scrolling, Framer Motion and modern UI.",
-    technologies: [
-      "Next.js",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lenis",
-    ],
-    github:
-      "https://github.com/Mezba-Morsalin/mezba-morsalin-portfolio",
-    live: "https://mezba-portfolio.vercel.app",
-  },
+  title: "Sun Cart",
+  image: "/assests/sunCart.png",
+  description:
+    "Modern e-commerce website with product browsing, responsive UI, authentication and a smooth shopping experience.",
+  technologies: [
+    "Next.js",
+    "Tailwind CSS",
+    "JavaScript",
+    "MongoDB",
+  ],
+  github:
+    "https://github.com/Mezba-Morsalin/Assignment-08-Sun-Cart",
+  live: "https://assignment-08-sun-cart-red.vercel.app",
+},
 ];
 
 export default function Projects() {
@@ -158,7 +158,7 @@ export default function Projects() {
                   {project.title}
                 </h3>
 
-                <p className="mt-4 leading-7 text-muted-foreground">
+                <p className="mt-4 leading-7 text-muted-foreground line-clamp-2">
                   {project.description}
                 </p>
 
@@ -197,95 +197,103 @@ export default function Projects() {
                     </DialogTrigger>
 
                     {/* ================= Modal ================= */}
-                    <DialogContent className="max-w-lg rounded-3xl border border-sky-500/30 bg-card/95 backdrop-blur-xl">
+                   <DialogContent className="max-w-3xl rounded-3xl border border-sky-500/30 bg-card/95 backdrop-blur-xl">
+  {/* ================= Project Image ================= */}
+  <div className="mt-8 overflow-hidden rounded-2xl border border-sky-500/20 bg-background">
+    <Image
+      src={project.image}
+      alt={project.title}
+      width={400}
+      height={400}
+      className="w-full object-cover transition-transform duration-500 hover:scale-105"
+    />
+  </div>
 
-                      <DialogHeader>
-                        <DialogTitle className="font-mono text-2xl font-bold">
-                          {project.title}
-                        </DialogTitle>
+  <DialogHeader>
+    <DialogTitle className="font-mono text-2xl font-bold">
+      {project.title}
+    </DialogTitle>
 
-                        <DialogDescription className="pt-2 leading-7 text-muted-foreground">
-                          {project.description}
-                        </DialogDescription>
-                      </DialogHeader>
+    <DialogDescription className="pt-2 leading-7 text-muted-foreground">
+      {project.description}
+    </DialogDescription>
+  </DialogHeader>
 
-                      {/* ================= Technologies ================= */}
-                      <div className="mt-3">
-                        <h4 className="mb-3 font-mono text-sm font-semibold text-sky-500">
-                          Technologies
-                        </h4>
+  {/* ================= Technologies ================= */}
+  <div className="mt-3">
+    <h4 className="mb-3 font-mono text-sm font-semibold text-sky-500">
+      Technologies
+    </h4>
 
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech) => (
-                            <span
-                              key={tech}
-                              className="rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-500"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+    <div className="flex flex-wrap gap-2">
+      {project.technologies.map((tech) => (
+        <span
+          key={tech}
+          className="rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-500"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
 
-                      {/* ================= Modal Buttons ================= */}
-                      <div className="mt-5 flex gap-3">
+  {/* ================= Modal Buttons ================= */}
+  <div className="mt-5 flex gap-3">
+    {/* GitHub */}
+    <motion.a
+      whileHover={{
+        y: -4,
+        scale: 1.03,
+      }}
+      whileTap={{
+        scale: 0.95,
+      }}
+      href={project.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-sky-500/25 bg-background px-5 py-3 font-medium transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:text-white hover:shadow-[0_0_25px_rgba(14,165,233,0.35)]"
+    >
+      <motion.span
+        whileHover={{
+          rotate: 360,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+      >
+        <FaGithub size={18} />
+      </motion.span>
 
-                        {/* GitHub */}
-                        <motion.a
-                          whileHover={{
-                            y: -4,
-                            scale: 1.03,
-                          }}
-                          whileTap={{
-                            scale: 0.95,
-                          }}
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-sky-500/25 bg-background px-5 py-3 font-medium transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:text-white hover:shadow-[0_0_25px_rgba(14,165,233,0.35)]"
-                        >
-                          <motion.span
-                            whileHover={{
-                              rotate: 360,
-                            }}
-                            transition={{
-                              duration: 0.5,
-                            }}
-                          >
-                            <FaGithub size={18} />
-                          </motion.span>
+      GitHub
+    </motion.a>
 
-                          GitHub
-                        </motion.a>
+    {/* Live Demo */}
+    <motion.a
+      whileHover={{
+        y: -4,
+        scale: 1.03,
+      }}
+      whileTap={{
+        scale: 0.95,
+      }}
+      href={project.live}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-3 font-medium text-white shadow-[0_0_25px_rgba(14,165,233,0.35)] transition-all duration-300 hover:shadow-[0_0_45px_rgba(14,165,233,0.55)]"
+    >
+      Live Demo
 
-                        {/* Live Demo */}
-                        <motion.a
-                          whileHover={{
-                            y: -4,
-                            scale: 1.03,
-                          }}
-                          whileTap={{
-                            scale: 0.95,
-                          }}
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-3 font-medium text-white shadow-[0_0_25px_rgba(14,165,233,0.35)] transition-all duration-300 hover:shadow-[0_0_45px_rgba(14,165,233,0.55)]"
-                        >
-                          Live Demo
-
-                          <motion.span
-                            whileHover={{
-                              x: 3,
-                              y: -3,
-                            }}
-                          >
-                            <ArrowUpRight size={18} />
-                          </motion.span>
-                        </motion.a>
-
-                      </div>
-                    </DialogContent>
+      <motion.span
+        whileHover={{
+          x: 3,
+          y: -3,
+        }}
+      >
+        <ArrowUpRight size={18} />
+      </motion.span>
+    </motion.a>
+  </div>
+</DialogContent>
                   </Dialog>
                 </div>
               </div>
