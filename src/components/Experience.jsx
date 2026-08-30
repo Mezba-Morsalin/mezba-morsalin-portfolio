@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+
 import {
   Code2,
   MonitorSmartphone,
@@ -64,9 +65,21 @@ const item = {
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        {/* Heading */}
+    <section
+      id="experience"
+      className="relative overflow-hidden bg-background py-24"
+    >
+      {/* ================= Background Glow ================= */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        {/* Center Ambient Glow */}
+        <div className="absolute left-1/2 top-1/2 h-[650px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400/6 blur-[160px] dark:bg-sky-500/10" />
+
+        {/* Top Glow */}
+        <div className="absolute left-1/2 top-0 h-[250px] w-[600px] -translate-x-1/2 rounded-full bg-cyan-400/5 blur-[130px] dark:bg-cyan-500/8" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        {/* ================= Heading ================= */}
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +91,7 @@ export default function Experience() {
             Journey
           </p>
 
-          <h2 className="text-4xl font-bold font-mono md:text-5xl">
+          <h2 className="font-mono text-4xl font-bold md:text-5xl">
             My{" "}
             <span className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
               Experience
@@ -91,7 +104,7 @@ export default function Experience() {
           </p>
         </motion.div>
 
-        {/* Timeline */}
+        {/* ================= Timeline ================= */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -100,7 +113,10 @@ export default function Experience() {
           className="relative"
         >
           {/* Center Line */}
-          <div className="absolute left-5 top-0 h-full w-[2px] bg-sky-500/40 md:left-1/2 md:-translate-x-1/2" />
+          <div className="absolute left-5 top-0 h-full w-[2px] bg-gradient-to-b from-transparent via-sky-500/50 to-transparent md:left-1/2 md:-translate-x-1/2" />
+
+          {/* Timeline Glow */}
+          <div className="pointer-events-none absolute left-5 top-0 h-full w-[20px] -translate-x-1/2 bg-sky-500/5 blur-xl md:left-1/2" />
 
           {journey.map((itemData, index) => {
             const Icon = itemData.icon;
@@ -111,7 +127,7 @@ export default function Experience() {
                 variants={item}
                 className={`relative mb-14 flex w-full ${
                   index % 2 === 0
-                    ? "justify-start md:justify-start"
+                    ? "justify-start"
                     : "justify-start md:justify-end"
                 }`}
               >
@@ -123,31 +139,41 @@ export default function Experience() {
                   transition={{
                     type: "spring",
                     stiffness: 250,
+                    damping: 18,
                   }}
-                  className="relative ml-14 w-full rounded-3xl border border-sky-500/40 bg-card/50 p-8 backdrop-blur-md shadow-lg md:ml-0 md:w-[46%] hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)]"
+                  className="relative ml-14 w-full rounded-3xl border border-sky-500/30 bg-card/50 p-8 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-sky-500/60 hover:shadow-[0_0_35px_rgba(14,165,233,0.15)] dark:border-sky-500/40 dark:hover:shadow-[0_0_35px_rgba(14,165,233,0.20)] md:ml-0 md:w-[46%]"
                 >
                   {/* Timeline Dot */}
                   <motion.div
                     animate={{
-                      scale: [1, 1.2, 1],
+                      scale: [1, 1.15, 1],
+                      boxShadow: [
+                        "0 0 0px rgba(14,165,233,0)",
+                        "0 0 18px rgba(14,165,233,0.45)",
+                        "0 0 0px rgba(14,165,233,0)",
+                      ],
                     }}
                     transition={{
-                      duration: 2,
+                      duration: 2.5,
                       repeat: Infinity,
+                      ease: "easeInOut",
                     }}
                     className="absolute -left-[52px] top-10 flex h-10 w-10 items-center justify-center rounded-full border-4 border-background bg-sky-500 text-white md:left-auto md:right-[-62px]"
                   >
                     <Icon size={18} />
                   </motion.div>
 
-                  <span className="inline-block rounded-full bg-sky-500/10 px-4 py-2 text-sm font-semibold text-sky-500">
+                  {/* Year */}
+                  <span className="inline-block rounded-full border border-sky-500/20 bg-sky-500/10 px-4 py-2 text-sm font-semibold text-sky-500">
                     {itemData.year}
                   </span>
 
-                  <h3 className="mt-5 text-2xl font-bold font-mono">
+                  {/* Title */}
+                  <h3 className="mt-5 font-mono text-2xl font-bold">
                     {itemData.title}
                   </h3>
 
+                  {/* Description */}
                   <p className="mt-4 leading-7 text-muted-foreground">
                     {itemData.description}
                   </p>

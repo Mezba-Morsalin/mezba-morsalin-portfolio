@@ -2,22 +2,24 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 
 import {
-  ArrowUpRight,
-} from "lucide-react";
-
-import { FaGithub } from "react-icons/fa6";
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
 
 const projects = [
   {
     title: "MediCare Connect",
-
     image: "/assests/medicare.png",
-
     description:
       "A complete hospital appointment & healthcare management platform with authentication, dashboard, Stripe payments and role based access.",
-
     technologies: [
       "React",
       "Next.js",
@@ -26,19 +28,16 @@ const projects = [
       "MongoDB",
       "Better Auth",
     ],
-
-    github: "https://github.com/Mezba-Morsalin/Medicare-client",
+    github:
+      "https://github.com/Mezba-Morsalin/Medicare-client",
     live: "https://medicare-connect-swart.vercel.app",
   },
 
   {
     title: "StudyNook",
-
     image: "/assests/studyNook.png",
-
     description:
       "A full-featured university room booking management system where students can reserve study rooms, manage bookings, view real-time availability, and enjoy a seamless booking experience with secure authentication.",
-
     technologies: [
       "React",
       "Next.js",
@@ -46,27 +45,24 @@ const projects = [
       "Express",
       "MongoDB",
     ],
-
-    github: "https://github.com/Mezba-Morsalin/Study-Nook",
+    github:
+      "https://github.com/Mezba-Morsalin/Study-Nook",
     live: "https://study-nook-sigma.vercel.app",
   },
 
   {
     title: "Portfolio Website",
-
     image: "/assests/mezbaPorfolio.png",
-
     description:
       "Personal portfolio with premium animations, Lenis smooth scrolling, Framer Motion and modern UI.",
-
     technologies: [
       "Next.js",
       "Tailwind CSS",
       "Framer Motion",
       "Lenis",
     ],
-
-    github: "https://github.com/Mezba-Morsalin/mezba-morsalin-portfolio",
+    github:
+      "https://github.com/Mezba-Morsalin/mezba-morsalin-portfolio",
     live: "https://mezba-portfolio.vercel.app",
   },
 ];
@@ -75,46 +71,14 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden py-24"
+      className="relative overflow-hidden bg-background py-24"
     >
-      {/* Background Glow */}
+      {/* ================= Background Shade ================= */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-sky-500/[0.025] via-transparent to-cyan-500/[0.025] dark:from-sky-500/[0.04] dark:via-transparent dark:to-cyan-500/[0.04]" />
 
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
 
-        <motion.div
-          animate={{
-            x: [0, 150, 0],
-            y: [0, -120, 0],
-            opacity: [0.15, 0.35, 0.15],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute -left-80 top-0 h-[700px] w-[700px] rounded-full bg-sky-500/40 blur-[180px]"
-        />
-
-        <motion.div
-          animate={{
-            x: [0, -120, 0],
-            y: [0, 120, 0],
-            opacity: [0.12, 0.28, 0.12],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute right-0 bottom-0 h-[700px] w-[700px] rounded-full bg-cyan-500/20 blur-[180px]"
-        />
-
-      </div>
-
-      <div className="mx-auto max-w-7xl px-6">
-
-        {/* Heading */}
-
+        {/* ================= Heading ================= */}
         <motion.div
           initial={{
             opacity: 0,
@@ -128,7 +92,7 @@ export default function Projects() {
             once: true,
           }}
           transition={{
-            duration: .7,
+            duration: 0.7,
           }}
           className="mb-16 text-center"
         >
@@ -136,7 +100,7 @@ export default function Projects() {
             Portfolio
           </p>
 
-          <h2 className="text-4xl font-bold font-mono md:text-5xl">
+          <h2 className="font-mono text-4xl font-bold md:text-5xl">
             Featured{" "}
             <span className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
               Projects
@@ -144,18 +108,14 @@ export default function Projects() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-muted-foreground">
-            Here are some selected projects showcasing my passion
-            for building modern, scalable and beautiful web
-            applications.
+            Here are some selected projects showcasing my passion for building
+            modern, scalable and beautiful web applications.
           </p>
         </motion.div>
 
-        {/* Grid */}
-
+        {/* ================= Project Grid ================= */}
         <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
-
           {projects.map((project, index) => (
-
             <motion.div
               key={project.title}
               initial={{
@@ -168,22 +128,19 @@ export default function Projects() {
               }}
               viewport={{
                 once: true,
-                amount: .3,
+                amount: 0.3,
               }}
               transition={{
-                duration: .7,
-                delay: index * .15,
+                duration: 0.7,
+                delay: index * 0.15,
               }}
               whileHover={{
                 y: -12,
               }}
-              className="group overflow-hidden rounded-3xl border shadow border-sky-500/40 bg-card/60 backdrop-blur-xl"
+              className="group overflow-hidden rounded-3xl border border-sky-500/30 bg-card/60 shadow backdrop-blur-xl transition-all duration-300 hover:border-sky-500/60 hover:shadow-[0_0_40px_rgba(14,165,233,0.15)] dark:border-sky-500/40 dark:hover:shadow-[0_0_40px_rgba(14,165,233,0.22)]"
             >
-
-              {/* Image */}
-
+              {/* ================= Image ================= */}
               <div className="relative overflow-hidden">
-
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -192,15 +149,12 @@ export default function Projects() {
                   className="h-[240px] w-full object-cover transition duration-700 group-hover:scale-110"
                 />
 
-                <div className="" />
-
+                <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
 
-              {/* Content */}
-
+              {/* ================= Content ================= */}
               <div className="p-7">
-
-                <h3 className="text-2xl font-bold font-mono">
+                <h3 className="font-mono text-2xl font-bold">
                   {project.title}
                 </h3>
 
@@ -208,12 +162,9 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
-
+                {/* ================= Technologies ================= */}
                 <div className="mt-6 flex flex-wrap gap-2">
-
                   {project.technologies.map((tech) => (
-
                     <motion.span
                       key={tech}
                       whileHover={{
@@ -223,68 +174,122 @@ export default function Projects() {
                     >
                       {tech}
                     </motion.span>
-
                   ))}
-
                 </div>
 
-                  {/* Buttons */}
-
-                  <div className="mt-8 flex gap-3">
-                    <motion.a
-                      whileHover={{
-                        y: -4,
-                        scale: 1.03,
-                      }}
-                      whileTap={{
-                        scale: 0.95,
-                      }}
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-sky-500/25 bg-background px-5 py-3 font-medium transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:text-white hover:shadow-[0_0_25px_rgba(14,165,233,.35)]"
-                    >
-                      <motion.div
+                {/* ================= View Details ================= */}
+                <div className="mt-8">
+                  <Dialog>
+                    <DialogTrigger>
+                      <motion.span
                         whileHover={{
-                          rotate: 360,
-                        }}
-                        transition={{
-                          duration: 0.5,
-                        }}
-                      >
-                        <FaGithub size={18} />
-                      </motion.div>
-
-                      GitHub
-                    </motion.a>
-
-                    <motion.a
-                      whileHover={{
-                        y: -4,
-                        scale: 1.03,
-                      }}
-                      whileTap={{
-                        scale: 0.95,
-                      }}
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-3 font-medium text-white shadow-[0_0_25px_rgba(14,165,233,.35)] transition-all duration-300 hover:shadow-[0_0_45px_rgba(14,165,233,.55)]"
-                    >
-                      Live Demo
-
-                      <motion.div
-                        whileHover={{
-                          x: 3,
                           y: -3,
                         }}
+                        whileTap={{
+                          scale: 0.97,
+                        }}
+                        className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-3 font-medium text-white shadow-[0_0_25px_rgba(14,165,233,0.25)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,0.45)]"
                       >
+                        View Details
+
                         <ArrowUpRight size={18} />
-                      </motion.div>
-                    </motion.a>
-                  </div>
+                      </motion.span>
+                    </DialogTrigger>
+
+                    {/* ================= Modal ================= */}
+                    <DialogContent className="max-w-lg rounded-3xl border border-sky-500/30 bg-card/95 backdrop-blur-xl">
+
+                      <DialogHeader>
+                        <DialogTitle className="font-mono text-2xl font-bold">
+                          {project.title}
+                        </DialogTitle>
+
+                        <DialogDescription className="pt-2 leading-7 text-muted-foreground">
+                          {project.description}
+                        </DialogDescription>
+                      </DialogHeader>
+
+                      {/* ================= Technologies ================= */}
+                      <div className="mt-3">
+                        <h4 className="mb-3 font-mono text-sm font-semibold text-sky-500">
+                          Technologies
+                        </h4>
+
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-500"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* ================= Modal Buttons ================= */}
+                      <div className="mt-5 flex gap-3">
+
+                        {/* GitHub */}
+                        <motion.a
+                          whileHover={{
+                            y: -4,
+                            scale: 1.03,
+                          }}
+                          whileTap={{
+                            scale: 0.95,
+                          }}
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-sky-500/25 bg-background px-5 py-3 font-medium transition-all duration-300 hover:border-sky-500 hover:bg-sky-500 hover:text-white hover:shadow-[0_0_25px_rgba(14,165,233,0.35)]"
+                        >
+                          <motion.span
+                            whileHover={{
+                              rotate: 360,
+                            }}
+                            transition={{
+                              duration: 0.5,
+                            }}
+                          >
+                            <FaGithub size={18} />
+                          </motion.span>
+
+                          GitHub
+                        </motion.a>
+
+                        {/* Live Demo */}
+                        <motion.a
+                          whileHover={{
+                            y: -4,
+                            scale: 1.03,
+                          }}
+                          whileTap={{
+                            scale: 0.95,
+                          }}
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-3 font-medium text-white shadow-[0_0_25px_rgba(14,165,233,0.35)] transition-all duration-300 hover:shadow-[0_0_45px_rgba(14,165,233,0.55)]"
+                        >
+                          Live Demo
+
+                          <motion.span
+                            whileHover={{
+                              x: 3,
+                              y: -3,
+                            }}
+                          >
+                            <ArrowUpRight size={18} />
+                          </motion.span>
+                        </motion.a>
+
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
-                          </motion.div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

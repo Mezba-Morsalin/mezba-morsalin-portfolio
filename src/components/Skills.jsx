@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "motion/react";
+
 import {
   Code2,
   MonitorSmartphone,
@@ -54,7 +55,10 @@ const skillCategories = [
       { name: "TypeScript", icon: "devicon-typescript-plain colored" },
       { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
       { name: "Docker", icon: "devicon-docker-plain colored" },
-      { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark colored" },
+      {
+        name: "AWS",
+        icon: "devicon-amazonwebservices-plain-wordmark colored",
+      },
       { name: "System Design", icon: null },
       { name: "CI/CD", icon: "devicon-githubactions-plain colored" },
     ],
@@ -86,8 +90,14 @@ const item = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      id="skills"
+      className="relative overflow-hidden bg-background py-24"
+    >
+      {/* Center Glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[450px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-400/8 blur-[150px] dark:bg-sky-500/10" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -137,7 +147,7 @@ export default function Skills() {
                   stiffness: 250,
                   damping: 18,
                 }}
-                className="rounded-3xl border border-sky-500/40 bg-card/50 p-7 backdrop-blur-md hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)]"
+                className="rounded-3xl border border-sky-500/40 bg-card/50 p-7 backdrop-blur-md shadow transition-all duration-300 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,0.18)]"
               >
                 <motion.div
                   whileHover={{

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+
 import {
   Globe,
   Database,
@@ -60,9 +61,15 @@ const item = {
 
 export default function Services() {
   return (
-    <section id="services" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Heading */}
+    <section
+      id="services"
+      className="relative overflow-hidden bg-background py-24"
+    >
+      {/* ================= Background Shade ================= */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-sky-500/[0.025] via-transparent to-cyan-500/[0.025] dark:from-sky-500/[0.04] dark:via-transparent dark:to-cyan-500/[0.04]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* ================= Heading ================= */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +81,7 @@ export default function Services() {
             Services
           </p>
 
-          <h2 className="text-4xl font-bold font-mono md:text-5xl">
+          <h2 className="font-mono text-4xl font-bold md:text-5xl">
             What{" "}
             <span className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent">
               I Do
@@ -82,12 +89,12 @@ export default function Services() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-muted-foreground">
-            I create fast, scalable and modern web applications with
-            clean architecture and beautiful user experiences.
+            I create fast, scalable and modern web applications with clean
+            architecture and beautiful user experiences.
           </p>
         </motion.div>
 
-        {/* Cards */}
+        {/* ================= Service Cards ================= */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -111,8 +118,9 @@ export default function Services() {
                   stiffness: 260,
                   damping: 18,
                 }}
-                className="rounded-3xl border border-sky-500/40 hover:border-sky-500 hover:shadow-[0_0_35px_rgba(14,165,233,.18)] shadow bg-card/50 p-8 backdrop-blur-md"
+                className="rounded-3xl border border-sky-500/30 bg-card/50 p-8 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-sky-500/60 hover:shadow-[0_0_35px_rgba(14,165,233,0.14)] dark:border-sky-500/40 dark:hover:shadow-[0_0_35px_rgba(14,165,233,0.20)]"
               >
+                {/* Icon */}
                 <motion.div
                   whileHover={{
                     rotate: 360,
@@ -128,10 +136,12 @@ export default function Services() {
                   <Icon size={30} />
                 </motion.div>
 
-                <h3 className="mb-4 text-xl font-bold font-mono">
+                {/* Title */}
+                <h3 className="mb-4 font-mono text-xl font-bold">
                   {service.title}
                 </h3>
 
+                {/* Description */}
                 <motion.p
                   whileHover={{
                     x: 5,
