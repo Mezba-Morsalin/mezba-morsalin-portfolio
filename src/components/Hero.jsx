@@ -443,122 +443,140 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* JAVASCRIPT LOGO */}
-      <motion.div
-        animate={{
-          y: [-4, 4, -4],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute left-0 top-16 z-20 will-change-transform sm:left-1 sm:top-20 md:left-3 md:top-24 lg:-left-4 lg:top-10 xl:left-2">
-        <div
-          className=" flex h-9 w-9 items-center justify-center rounded-xl border border-yellow-500/30 bg-card/90 p-1.5 shadow-[0_0_15px_rgba(234,179,8,0.10)] backdrop-blur-md sm:h-11 sm:w-11 sm:rounded-xl sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:rounded-2xl lg:p-3">
-          <Image src="https://cdn.simpleicons.org/javascript" alt="JavaScript" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-        </div>
-      </motion.div>
+      {/* ===================================================== */}
+{/* JAVASCRIPT LOGO                                      */}
+{/* ===================================================== */}
 
-      {/* REACT LOGO */}
-      <motion.div
-        animate={{
-          y: [4, -4, 4],
-        }}
-        transition={{
-          duration: 6.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute right-0 top-14 z-20 will-change-transform sm:right-1 sm:top-24 md:right-3 md:top-28 lg:-right-4 lg:top-10 xl:right-2">
-        <div
-          className=" flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-500/30 bg-card/90 p-1.5 shadow-[0_0_15px_rgba(6,182,212,0.10)] backdrop-blur-md sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:rounded-2xl lg:p-3">
-          <Image src="https://cdn.simpleicons.org/react" alt="React.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-        </div>
-      </motion.div>
+<motion.div
+  animate={{
+    y: [-4, 4, -4],
+  }}
+  transition={{
+    duration: 6,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className=" pointer-events-none absolute left-0 top-16 z-20 will-change-transform sm:left-1 sm:top-20 md:left-3 md:top-24 lg:-left-4 lg:top-10 xl:left-2">
+  <div
+    className=" flex h-9 w-9 items-center justify-center rounded-full border border-yellow-500/40 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(234,179,8,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
+    <Image src="https://cdn.simpleicons.org/javascript" alt="JavaScript" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+  </div>
+</motion.div>
 
-      {/* NEXT.JS LOGO */}
-      <motion.div
-        animate={{
-          y: [-4, 4, -4],
-        }}
-        transition={{
-          duration: 6.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute bottom-20 right-0 z-20 will-change-transform sm:right-1 sm:bottom-32 md:right-3 md:bottom-36 lg:right-24 lg:bottom-75 xl:right-2">
-        <div className=" flex h-9 w-9 items-center justify-center rounded-xl border border-slate-500/30 bg-card/90 p-1.5 shadow-[0_0_15px_rgba(148,163,184,0.10)] backdrop-blur-md sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:rounded-2xl lg:p-3">
-          <Image src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="Next.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-        </div>
-      </motion.div>
+{/* ===================================================== */}
+{/* REACT LOGO                                           */}
+{/* ===================================================== */}
+<motion.div
+  animate={{
+    y: [4, -4, 4],
+  }}
+  transition={{
+    duration: 6.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className=" pointer-events-none absolute right-0 top-14 z-20 will-change-transform sm:right-1 sm:top-24 md:right-3 md:top-28 lg:-right-4 lg:top-10 xl:right-2">
+  <div
+    className=" flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/40 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(6,182,212,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
+    <Image src="https://cdn.simpleicons.org/react" alt="React.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+  </div>
+</motion.div>
 
-      {/* NODE.JS LOGO */}
-      <motion.div
-        animate={{
-          y: [4, -4, 4],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute bottom-20 left-0 z-20 will-change-transform sm:left-1 sm:bottom-24 md:left-3 md:bottom-28 lg:-left-4 lg:bottom-75 xl:left-2">
-        <div className=" flex h-9 w-9 items-center justify-center rounded-xl border border-green-500/25 bg-card/90 p-1.5 shadow-[0_0_15px_rgba(34,197,94,0.10)] backdrop-blur-md sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:rounded-2xl lg:p-3">
-          <Image src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-        </div>
-      </motion.div>
+{/* ===================================================== */}
+{/* NEXT.JS LOGO                                         */}
+{/* ===================================================== */}
 
-      {/* EXPRESS.JS LOGO */}
-      <motion.div
-        animate={{
-          y: [3, -3, 3],
-        }}
-        transition={{
-          duration: 6.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute bottom-1 left-12 z-20 will-change-transform sm:left-16 sm:bottom-0 md:left-20 lg:left-10">
-        <div
-          className=" flex h-9 w-9 items-center justify-center rounded-xl border border-purple-500/25 bg-card/90 p-1.5 shadow-[0_0_15px_rgba(168,85,247,0.10)] backdrop-blur-md sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:rounded-2xl lg:p-3">
-          <Image src="https://cdn.simpleicons.org/express/ffffff" alt="Express.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-        </div>
-      </motion.div>
+<motion.div
+  animate={{
+    y: [-4, 4, -4],
+  }}
+  transition={{
+    duration: 6.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className=" pointer-events-none absolute bottom-20 right-0 z-20 will-change-transform sm:right-1 sm:bottom-32 md:right-3 md:bottom-36 lg:right-24 lg:bottom-75 xl:right-2">
+  <div
+    className=" flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/50 bg-white/95 p-1.5 shadow-[0_0_18px_rgba(100,116,139,0.18)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 dark:border-slate-500/30 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
+    {/* Light Theme */}
+    <Image src="https://cdn.simpleicons.org/nextdotjs/111827" alt="Next.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain dark:hidden sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
 
-      {/* MONGODB LOGO */}
-      <motion.div
-        animate={{
-          y: [-3, 3, -3],
-        }}
-        transition={{
-          duration: 6.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute bottom-1 right-12 z-20 will-change-transform sm:right-16 sm:bottom-0 md:right-20 lg:right-14">
-        <div
-          className=" flex h-9 w-9 items-center justify-center rounded-xl border border-green-500/25 bg-card/90 p-1.5 shadow-[0_0_15px_rgba(34,197,94,0.10)] backdrop-blur-md sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:rounded-2xl lg:p-3">
-          <Image src="https://cdn.simpleicons.org/mongodb" alt="MongoDB" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-        </div>
-      </motion.div>
+    {/* Dark Theme */}
+    <Image src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="Next.js" width={32} height={32} unoptimized className=" hidden h-5 w-5 object-contain dark:block sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+  </div>
+</motion.div>
 
-      {/* TAILWIND CSS LOGO */}
-      <motion.div
-        animate={{
-          y: [3, -3, 3],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute bottom-0 left-1/2 z-20 -translate-x-1/2 will-change-transform">
-        <div
-          className=" flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-500/25 bg-card/90 p-1.5 shadow-[0_0_15px_rgba(6,182,212,0.10)] backdrop-blur-md sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:rounded-2xl lg:p-3">
-          <Image src="https://cdn.simpleicons.org/tailwindcss" alt="Tailwind CSS" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-        </div>
-      </motion.div>
+<motion.div
+  animate={{
+    y: [4, -4, 4],
+  }}
+  transition={{
+    duration: 6,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className=" pointer-events-none absolute bottom-20 left-0 z-20 will-change-transform sm:left-1 sm:bottom-24 md:left-3 md:bottom-28 lg:-left-4 lg:bottom-75 xl:left-2">
+  <div
+    className=" flex h-9 w-9 items-center justify-center rounded-full border border-green-500/35 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(34,197,94,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
+    <Image src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+  </div>
+</motion.div>
+
+{/* ===================================================== */}
+{/* EXPRESS.JS LOGO                                      */}
+{/* ===================================================== */}
+
+<motion.div
+  animate={{
+    y: [3, -3, 3],
+  }}
+  transition={{
+    duration: 6.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className=" pointer-events-none absolute bottom-1 left-12 z-20 will-change-transform sm:left-16 sm:bottom-0 md:left-20 lg:left-10">
+  <div
+    className=" flex h-9 w-9 items-center justify-center rounded-full border border-purple-500/35 bg-white/95 p-1.5 shadow-[0_0_18px_rgba(168,85,247,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
+    {/* Light Theme */}
+    <Image src="https://cdn.simpleicons.org/express/111827" alt="Express.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain dark:hidden sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+    {/* Dark Theme */}
+    <Image src="https://cdn.simpleicons.org/express/ffffff" alt="Express.js" width={32} height={32} unoptimized className=" hidden h-5 w-5 object-contain dark:block sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+  </div>
+</motion.div>
+
+<motion.div
+  animate={{
+    y: [-3, 3, -3],
+  }}
+  transition={{
+    duration: 6.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className=" pointer-events-none absolute bottom-1 right-12 z-20 will-change-transform sm:right-16 sm:bottom-0 md:right-20 lg:right-14">
+  <div
+    className=" flex h-9 w-9 items-center justify-center rounded-full border border-green-500/35 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(34,197,94,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
+    <Image src="https://cdn.simpleicons.org/mongodb" alt="MongoDB" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+  </div>
+</motion.div>
+
+<motion.div
+  animate={{
+    y: [3, -3, 3],
+  }}
+  transition={{
+    duration: 6,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className=" pointer-events-none absolute bottom-0 left-1/2 z-20 -translate-x-1/2 will-change-transform">
+  <div
+    className=" flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/35 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(6,182,212,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
+    <Image src="https://cdn.simpleicons.org/tailwindcss" alt="Tailwind CSS" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
+  </div>
+</motion.div>
+
     </motion.div>
 
       </div>
