@@ -1,93 +1,85 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Preloader() {
-  const [mounted, setMounted] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [showPreloader, setShowPreloader] = useState(true);
 
-  // Prevent server-client HTML mismatch errors completely
   useEffect(() => {
-    setMounted(true);
+    let value = 0;
+
+    const interval = setInterval(() => {
+      value += 2;
+
+      if (value >= 100) {
+        value = 100;
+        clearInterval(interval);
+
+        // Stay at 100% for a moment
+        setTimeout(() => {
+          setShowPreloader(false);
+        }, 400);
+      }
+
+      setProgress(value);
+    }, 35);
+
+    return () => clearInterval(interval);
   }, []);
 
-  if (!mounted) {
-    // Return a completely static, matching layout for SSR/Hydration safety
-    return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
-        <div className="relative text-center px-6">
-          <h1 className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-4xl font-black tracking-[6px] text-transparent md:text-6xl md:tracking-[10px]">
-            MEZBA MORSALIN
-          </h1>
-          <p className="mt-5 font-mono text-xs uppercase tracking-[6px] text-sky-500 md:text-sm md:tracking-[8px]">
-            Initializing Portfolio...
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-background select-none pointer-events-none">
-      
-      {/* ================= Background Glow ================= */}
-      {/* Optimized: Swapped out JavaScript tracking for a native CSS keyframe loop running on the GPU */}
-      <div 
-        className="absolute h-[350px] w-[350px] md:h-[500px] md:w-[500px] rounded-full bg-sky-500/20 blur-[80px] md:blur-[100px]" 
-        style={{
-          animation: 'pulseGlow 6s ease-in-out infinite',
-          willChange: 'transform, opacity'
-        }}
-      />
-
-      {/* Grid */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff15_1px,transparent_1px),linear-gradient(to_bottom,#ffffff15_1px,transparent_1px)] bg-[size:60px_60px]" />
-
-      {/* ================= Content Area ================= */}
-      <div className="relative text-center px-6">
-        
-        {/* Text opacity shimmer via lightweight CSS animation */}
-        <h1 
-          className="bg-gradient-to-r from-sky-500 via-cyan-400 to-blue-600 bg-clip-text text-4xl font-black tracking-[6px] text-transparent md:text-6xl md:tracking-[10px]"
-          style={{
-            animation: 'textShimmer 2.5s ease-in-out infinite',
-            willChange: 'opacity'
+    <AnimatePresence>
+      {showPreloader && (
+        <motion.div
+          initial={{ y: 0 }}
+          exit={{ y: "-100%" }}
+          transition={{
+            duration: 0.8,
+            ease: [0.76, 0, 0.24, 1],
           }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-background"
         >
-          MEZBA MORSALIN
-        </h1>
+          {/* Very Lightweight Glow */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-500/10 blur-3xl" />
 
-        <p className="mt-5 font-mono text-xs uppercase tracking-[6px] text-sky-400 md:text-sm md:tracking-[8px] opacity-80">
-          Initializing Portfolio...
-        </p>
+          {/* Content */}
+          <div className="relative w-full max-w-md px-6 text-center">
 
-        {/* ================= Loading Bar ================= */}
-        <div className="mx-auto mt-10 h-1 w-64 overflow-hidden rounded-full bg-muted md:w-80">
-          {/* Using Framer Motion ONLY for the entry, while running the translate track via GPU transform */}
-          <motion.div
-            initial={{ transform: "translateX(-100%)" }}
-            animate={{ transform: "translateX(250%)" }}
-            transition={{
-              duration: 1.2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="h-full w-24 rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 will-change-transform"
-          />
-        </div>
-      </div>
+            {/* Name */}
+            <h1 className="text-4xl font-black tracking-[5px] text-sky-400 md:text-6xl md:tracking-[9px]">
+              MEZBA MORSALIN
+            </h1>
 
-      {/* Embedded hardware-accelerated keyframe styles */}
-      <style jsx global>{`
-        @keyframes pulseGlow {
-          0%, 100% { transform: scale(1); opacity: 0.6; }
-          50% { transform: scale(1.06); opacity: 0.9; }
-        }
-        @keyframes textShimmer {
-          0%, 100% { opacity: 0.75; }
-          50% { opacity: 1; }
-        }
-      `}</style>
-    </div>
+            {/* Status */}
+            <p className="mt-5 font-mono text-xs uppercase tracking-[5px] text-sky-400/70 md:text-sm md:tracking-[7px]">
+              Loading Portfolio...
+            </p>
+
+            {/* Percentage */}
+            <div className="mt-8 font-mono text-4xl font-bold tabular-nums text-foreground md:text-5xl">
+              {progress}%
+            </div>
+
+            {/* Progress Bar */}
+            <div className="mx-auto mt-6 h-1.5 w-64 overflow-hidden rounded-full bg-muted md:w-80">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 transition-[width] duration-75 ease-linear"
+                style={{
+                  width: `${progress}%`,
+                }}
+              />
+            </div>
+
+            {/* Bottom Status */}
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[3px] text-muted-foreground">
+              {progress === 100 ? "Ready" : "Please wait"}
+            </p>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
