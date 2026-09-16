@@ -63,7 +63,7 @@ const projects = [
   ],
   github:
     "https://github.com/Mezba-Morsalin/Assignment-08-Sun-Cart",
-  live: "https://assignment-08-sun-cart-red.vercel.app",
+  live: "https://sun-cart-red.vercel.app",
 },
 ];
 

@@ -48,21 +48,23 @@ const skillCategories = [
       { name: "Netlify", icon: "devicon-netlify-plain colored" },
     ],
   },
-  {
-    title: "Currently Learning",
-    icon: Code2,
-    skills: [
-      { name: "TypeScript", icon: "devicon-typescript-plain colored" },
-      { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
-      { name: "Docker", icon: "devicon-docker-plain colored" },
-      {
-        name: "AWS",
-        icon: "devicon-amazonwebservices-plain-wordmark colored",
-      },
-      { name: "System Design", icon: null },
-      { name: "CI/CD", icon: "devicon-githubactions-plain colored" },
-    ],
-  },
+  // {
+  //   title: "Currently Learning",
+  //   icon: Code2,
+  //   skills: [
+  //     { name: "TypeScript", icon: "devicon-typescript-plain colored" },
+  //     { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
+  //     { name: "Nest.js", icon: "devicon-nestjs-plain colored" },
+  //     { name: "Docker", icon: "devicon-docker-plain colored" },
+  //     { name: "Prisma", icon: "devicon-prisma-plain" },
+  //     {
+  //       name: "AWS",
+  //       icon: "devicon-amazonwebservices-plain-wordmark colored",
+  //     },
+  //     { name: "Nginx", icon: "devicon-nginx-plain colored" },
+  //     { name: "CI/CD", icon: "devicon-githubactions-plain colored" },
+  //   ],
+  // },
 ];
 
 const container = {
@@ -129,7 +131,7 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid gap-8 md:grid-cols-2 xl:grid-cols-4"
+          className="grid gap-8 md:grid-cols-2 xl:grid-cols-3"
         >
           {skillCategories.map((category) => {
             const Icon = category.icon;
