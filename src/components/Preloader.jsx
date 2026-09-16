@@ -1,35 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useSpring, useTransform } from "framer-motion";
 
 export default function Preloader() {
   const [showPreloader, setShowPreloader] = useState(true);
   const [isReady, setIsReady] = useState(false);
-  const [percentText, setPercentText] = useState("0");
+  const textRef = useRef(null);
 
-  // Smooth Motion Value drives GPU-accelerated transforms
-  const progress = useSpring(0, { stiffness: 40, damping: 15 });
+  // Optimized spring targeting standard 60fps mobile hardware budget
+  const progress = useSpring(0, { stiffness: 60, damping: 20, mass: 0.5 });
   const scaleX = useTransform(progress, [0, 100], [0, 1]);
 
   useEffect(() => {
-    // Sync text rendering efficiently without triggering layout reflows
+    let lastRendered = -1;
+
+    // Direct DOM manipulation bypasses React render tree completely
     const unsubscribe = progress.on("change", (latest) => {
       const current = Math.round(latest);
-      setPercentText(current.toString());
-
-      if (current >= 100) {
-        setIsReady(true);
+      
+      // Update DOM only when the integer percentage changes
+      if (current !== lastRendered) {
+        lastRendered = current;
+        if (textRef.current) {
+          textRef.current.textContent = `${current}%`;
+        }
+        if (current >= 100) {
+          setIsReady(true);
+        }
       }
     });
 
-    // Start target animation
+    // Start progress target
     progress.set(100);
 
-    // Auto-dismiss timing synced with animation
     const timer = setTimeout(() => {
       setShowPreloader(false);
-    }, 2200);
+    }, 2000);
 
     return () => {
       unsubscribe();
@@ -44,12 +51,12 @@ export default function Preloader() {
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{
-            duration: 0.8,
+            duration: 0.7,
             ease: [0.76, 0, 0.24, 1],
           }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-background [will-change:transform]"
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-background"
         >
-          {/* Hardware-accelerated Glow (Replaced blur-3xl with Radial Gradient) */}
+          {/* Background Ambient Glow */}
           <div 
             className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30"
             style={{
@@ -69,12 +76,15 @@ export default function Preloader() {
               Loading Portfolio...
             </p>
 
-            {/* Percentage */}
-            <div className="mt-8 font-mono  text-4xl font-bold tabular-nums text-foreground md:text-5xl">
-              {percentText}%
+            {/* Direct DOM-manipulated Percentage Text */}
+            <div 
+              ref={textRef} 
+              className="mt-8 font-mono text-4xl font-bold tabular-nums text-foreground md:text-5xl"
+            >
+              0%
             </div>
 
-            {/* Progress Bar Container */}
+            {/* Hardware-Accelerated Progress Bar */}
             <div className="relative mx-auto mt-6 h-1.5 w-64 overflow-hidden rounded-full bg-muted md:w-80">
               <motion.div
                 className="h-full w-full origin-left rounded-full bg-gradient-to-r from-sky-500 to-cyan-400 [will-change:transform]"
