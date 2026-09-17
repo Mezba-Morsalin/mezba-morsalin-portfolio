@@ -197,388 +197,172 @@ export default function Hero() {
             ))}
           </div>
         </motion.div>
-
         {/* RIGHT CONTENT (IMAGE) */}
-        <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+<motion.div initial={{ opacity: 0, x: -60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative flex w-full items-center justify-center overflow-visible">
+  {/* ================= MAIN CONTAINER ================= */}
+  <div
+    className=" relative aspect-square w-[300px] sm:w-[380px] md:w-[500px] lg:h-[620px] lg:w-[620px]">
+    {/* ================= GLOW ================= */}
+    <div
+      className=" absolute left-1/2 top-1/2 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/15 blur-[60px] sm:h-[280px] sm:w-[280px] sm:blur-[70px] md:h-[360px] md:w-[360px] md:blur-[85px] lg:h-[420px] lg:w-[420px] lg:blur-[100px] dark:bg-cyan-500/15"/>
+    {/* ================= MAIN IMAGE ================= */}
+    <div
+  className=" absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-[22px] border border-sky-500/40 bg-card p-2 shadow-[0_0_20px_rgba(14,165,233,0.15)] sm:rounded-[26px] sm:p-2.5 md:rounded-[32px] md:p-3 lg:rounded-[36px] lg:p-3 lg:shadow-[0_0_30px_rgba(14,165,233,0.15)] dark:lg:shadow-[0_0_30px_rgba(14,165,233,0.2)]">
+  <Image src="/assests/mezbame.png" alt="Mezba" width={620} height={620} priority className=" h-[220px] w-[220px] rounded-[16px] object-cover sm:h-[300px] sm:w-[300px] sm:rounded-[20px] md:h-[360px] md:w-[360px] md:rounded-[25px] lg:h-auto lg:w-auto lg:max-h-[500px] lg:max-w-[500px] lg:rounded-[28px] lg:object-contain"/>
+</div>
+    {/* ================= JAVASCRIPT ================= */}
+    <motion.div
+      animate={{ y: [-6, 6, -6] }}
       transition={{
-        duration: 0.6,
-        delay: 0.2,
+        duration: 3.5,
+        repeat: Infinity,
+        ease: "easeInOut",
       }}
-      className=" relative flex min-h-[540px] w-full items-center justify-center px-1 sm:min-h-[600px] sm:px-3 md:min-h-[640px] md:px-4 lg:min-h-[650px] lg:px-0">
-      {/* BACKGROUND GLOW */}
-      <motion.div
-        animate={{
-          opacity: [0.2, 0.4, 0.2],
-          scale: [1, 1.03, 1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className=" pointer-events-none absolute hidden h-[420px] w-[420px] rounded-full bg-cyan-500/20 blur-[100px] lg:block xl:h-[500px] xl:w-[500px]"/>
-
-      {/* ROTATING GRADIENT BORDER */}
-      <motion.div
-        animate={{
-          rotate: 360,
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className=" pointer-events-none absolute hidden h-[500px] w-[500px] rounded-[45px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 opacity-40 lg:block xl:h-[540px] xl:w-[540px]">
-        <div
-          className=" m-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)] rounded-[44px] bg-background"/>
-      </motion.div>
-
-      {/* MAIN EDITOR AREA */}
+      className=" absolute left-1/2 top-[-2px] z-20 flex -translate-x-1/2 flex-col items-center sm:top-[-4px] lg:top-[-5px]">
       <div
-        className=" relative z-10 w-full max-w-[470px]">
-        {/* DEVELOPER.JS CODE WINDOW */}
-        <motion.div
-          animate={{
-            y: [-4, 4, -4],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className=" relative w-full overflow-hidden rounded-2xl border border-sky-500/30 bg-[#080d1a] shadow-[0_0_40px_rgba(14,165,233,0.14)] will-change-transform sm:rounded-3xl lg:shadow-[0_0_50px_rgba(14,165,233,0.18)]">
-          {/* EDITOR HEADER */}
-          <div
-            className=" flex h-12 items-center justify-between border-b border-white/10 bg-[#0d1424] px-3 sm:h-14 sm:px-5">
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3" />
-              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3" />
-              <span className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3" />
-            </div>
-
-            <div className="font-mono text-[10px] text-slate-400 sm:text-xs">
-              developer.js
-            </div>
-
-            <div className="w-7 sm:w-10" />
-          </div>
-
-          {/* CODE CONTENT */}
-          <div
-            className=" w-full overflow-hidden px-3 py-5 sm:px-5 sm:py-6 md:px-6">
-            <div
-              className=" flex w-full gap-2 font-mono text-[8px] leading-[1.95] sm:gap-3 sm:text-[10px] sm:leading-7 md:gap-4 md:text-xs lg:text-sm">
-              {/* LINE NUMBERS */}
-              <div
-                className=" shrink-0 select-none text-right text-slate-600">
-                <div>01</div>
-                <div>02</div>
-                <div>03</div>
-                <div>04</div>
-                <div>05</div>
-                <div>06</div>
-                <div>07</div>
-                <div>08</div>
-                <div>09</div>
-                <div>10</div>
-                <div>11</div>
-                <div>12</div>
-                <div>13</div>
-              </div>
-
-              {/* CODE */}
-              <div
-                className=" min-w-0 flex-1 whitespace-nowrap">
-                <div>
-                  <span className="text-purple-400">const</span>{" "}
-                  <span className="text-yellow-300">developer</span>{" "}
-                  <span className="text-white">=</span>{" "}
-                  <span className="text-white">{"{"}</span>
-                </div>
-
-                <div className="pl-3 sm:pl-4">
-                  <span className="text-red-300">name</span>
-                  <span className="text-white">:</span>{" "}
-                  <span className="text-green-400">
-                    &quot;Mezba Morsalin&quot;
-                  </span>
-                  <span className="text-white">,</span>
-                </div>
-
-                <div className="pl-3 sm:pl-4">
-                  <span className="text-red-300">title</span>
-                  <span className="text-white">:</span>{" "}
-                  <span className="text-green-400">
-                    &quot;Frontend Developer&quot;
-                  </span>
-                  <span className="text-white">,</span>
-                </div>
-
-                <div className="pl-3 sm:pl-4">
-                  <span className="text-red-300">skills</span>
-                  <span className="text-white">:</span>{" "}
-                  <span className="text-white">[</span>
-                </div>
-
-                <div className="pl-5 text-green-400 sm:pl-8">
-                  &quot;HTML&quot;, &quot;CSS&quot;, &quot;JavaScript&quot;,
-                </div>
-
-                <div className="pl-5 text-green-400 sm:pl-8">
-                  &quot;React.js&quot;, &quot;Next.js&quot;,
-                </div>
-
-                <div className="pl-5 text-green-400 sm:pl-8">
-                  &quot;Tailwind CSS&quot;, &quot;Node.js&quot;,
-                </div>
-
-                <div className="pl-5 text-green-400 sm:pl-8">
-                  &quot;Express.js&quot;, &quot;MongoDB&quot;,
-                </div>
-
-                <div className="pl-3 sm:pl-4">
-                  <span className="text-white">]</span>
-                  <span className="text-white">,</span>
-                </div>
-
-                <div className="pl-3 sm:pl-4">
-                  <span className="text-red-300">passion</span>
-                  <span className="text-white">:</span>{" "}
-                  <span className="text-green-400">
-                    &quot;Building modern web experiences&quot;
-                  </span>
-                  <span className="text-white">,</span>
-                </div>
-
-                <div className="pl-3 sm:pl-4">
-                  <span className="text-red-300">available</span>
-                  <span className="text-white">:</span>{" "}
-                  <span className="text-blue-400">true</span>
-                  <span className="text-white">,</span>
-                </div>
-
-                <div className="pl-3 sm:pl-4">
-                  <span className="text-red-300">location</span>
-                  <span className="text-white">:</span>{" "}
-                  <span className="text-green-400">
-                    &quot;Bangladesh&quot;
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-white">{"}"}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* STATUS BAR */}
-          <div
-            className=" flex h-8 items-center justify-between border-t border-white/10 bg-[#0d1424] px-3 sm:px-4">
-            <div
-              className=" flex items-center gap-1.5 text-[8px] text-slate-400 sm:gap-2 sm:text-[10px]">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2" />
-              Available for work
-            </div>
-
-            <span
-              className=" hidden font-mono text-[8px] text-slate-500 sm:block sm:text-[10px]">
-              UTF-8 · JavaScript
-            </span>
-          </div>
-        </motion.div>
-
-        {/* EXPERIENCE CARD */}
-        <motion.div
-          animate={{
-            y: [-3, 3, -3],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className=" absolute  top-[-30px] right-25 z-30 rounded-xl border border-sky-500/20 bg-card/95 px-2.5 py-1.5 shadow-[0_0_18px_rgba(14,165,233,0.12)] backdrop-blur-md will-change-transform sm:right-0 sm:top-[-22px] sm:rounded-2xl sm:px-3 sm:py-2 md:right-[-4px] md:top-[-24px] lg:-right-24 lg:top-8 lg:rounded-3xl lg:px-6 lg:py-4 xl:-right-32">
-          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
-            <Flame className="h-3.5 w-3.5 shrink-0 text-orange-500 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
-
-            <div>
-              <p className="text-[8px] text-muted-foreground sm:text-[9px] lg:text-[11px]">
-                Experience
-              </p>
-
-              <h3 className="text-xs font-bold sm:text-sm lg:text-2xl">
-                3+ Years
-              </h3>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* PROJECTS CARD */}
-        <motion.div
-          animate={{
-            y: [3, -3, 3],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className=" absolute bottom-[-12px] left-35 z-30  rounded-xl border border-sky-500/20 bg-card/95 px-2.5 py-1.5 shadow-[0_0_18px_rgba(14,165,233,0.12)] backdrop-blur-md will-change-transform sm:bottom-[-22px] sm:left-0 sm:rounded-2xl sm:px-3 sm:py-2 md:bottom-[-24px] md:left-[-4px] lg:-bottom-2 lg:-left-24 lg:rounded-3xl lg:px-6 lg:py-4 xl:-left-32">
-          <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
-            <Rocket className="h-3.5 w-3.5 shrink-0 text-sky-400 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
-
-            <div>
-              <p className="text-[8px] text-muted-foreground sm:text-[9px] lg:text-[11px]">
-                Projects
-              </p>
-
-              <h3 className="text-xs font-bold sm:text-sm lg:text-2xl">
-                15+
-              </h3>
-            </div>
-          </div>
-        </motion.div>
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur-md sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-javascript-plain colored text-2xl sm:text-3xl lg:text-4xl" />
       </div>
 
-      {/* ===================================================== */}
-{/* JAVASCRIPT LOGO                                      */}
-{/* ===================================================== */}
-
-<motion.div
-  animate={{
-    y: [-4, 4, -4],
-  }}
-  transition={{
-    duration: 6,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className=" pointer-events-none absolute left-0 top-16 z-20 will-change-transform sm:left-1 sm:top-20 md:left-3 md:top-24 lg:-left-4 lg:top-10 xl:left-2">
-  <div
-    className=" flex h-9 w-9 items-center justify-center rounded-full border border-yellow-500/40 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(234,179,8,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
-    <Image src="https://cdn.simpleicons.org/javascript" alt="JavaScript" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-  </div>
-</motion.div>
-
-{/* ===================================================== */}
-{/* REACT LOGO                                           */}
-{/* ===================================================== */}
-<motion.div
-  animate={{
-    y: [4, -4, 4],
-  }}
-  transition={{
-    duration: 6.5,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className=" pointer-events-none absolute right-0 top-14 z-20 will-change-transform sm:right-1 sm:top-24 md:right-3 md:top-28 lg:-right-4 lg:top-10 xl:right-2">
-  <div
-    className=" flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/40 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(6,182,212,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
-    <Image src="https://cdn.simpleicons.org/react" alt="React.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-  </div>
-</motion.div>
-
-{/* ===================================================== */}
-{/* NEXT.JS LOGO                                         */}
-{/* ===================================================== */}
-
-<motion.div
-  animate={{
-    y: [-4, 4, -4],
-  }}
-  transition={{
-    duration: 6.5,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className=" pointer-events-none absolute bottom-20 right-0 z-20 will-change-transform sm:right-1 sm:bottom-32 md:right-3 md:bottom-36 lg:right-24 lg:bottom-75 xl:right-2">
-  <div
-    className=" flex h-9 w-9 items-center justify-center rounded-full border border-slate-400/50 bg-white/95 p-1.5 shadow-[0_0_18px_rgba(100,116,139,0.18)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 dark:border-slate-500/30 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
-    {/* Light Theme */}
-    <Image src="https://cdn.simpleicons.org/nextdotjs/111827" alt="Next.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain dark:hidden sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-
-    {/* Dark Theme */}
-    <Image src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="Next.js" width={32} height={32} unoptimized className=" hidden h-5 w-5 object-contain dark:block sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-  </div>
-</motion.div>
-
-<motion.div
-  animate={{
-    y: [4, -4, 4],
-  }}
-  transition={{
-    duration: 6,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className=" pointer-events-none absolute bottom-20 left-0 z-20 will-change-transform sm:left-1 sm:bottom-24 md:left-3 md:bottom-28 lg:-left-4 lg:bottom-75 xl:left-2">
-  <div
-    className=" flex h-9 w-9 items-center justify-center rounded-full border border-green-500/35 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(34,197,94,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
-    <Image src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-  </div>
-</motion.div>
-
-{/* ===================================================== */}
-{/* EXPRESS.JS LOGO                                      */}
-{/* ===================================================== */}
-
-<motion.div
-  animate={{
-    y: [3, -3, 3],
-  }}
-  transition={{
-    duration: 6.5,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className=" pointer-events-none absolute bottom-1 left-12 z-20 will-change-transform sm:left-16 sm:bottom-0 md:left-20 lg:left-10">
-  <div
-    className=" flex h-9 w-9 items-center justify-center rounded-full border border-purple-500/35 bg-white/95 p-1.5 shadow-[0_0_18px_rgba(168,85,247,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
-    {/* Light Theme */}
-    <Image src="https://cdn.simpleicons.org/express/111827" alt="Express.js" width={32} height={32} unoptimized className=" h-5 w-5 object-contain dark:hidden sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-    {/* Dark Theme */}
-    <Image src="https://cdn.simpleicons.org/express/ffffff" alt="Express.js" width={32} height={32} unoptimized className=" hidden h-5 w-5 object-contain dark:block sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-  </div>
-</motion.div>
-
-<motion.div
-  animate={{
-    y: [-3, 3, -3],
-  }}
-  transition={{
-    duration: 6.5,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className=" pointer-events-none absolute bottom-1 right-12 z-20 will-change-transform sm:right-16 sm:bottom-0 md:right-20 lg:right-14">
-  <div
-    className=" flex h-9 w-9 items-center justify-center rounded-full border border-green-500/35 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(34,197,94,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
-    <Image src="https://cdn.simpleicons.org/mongodb" alt="MongoDB" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-  </div>
-</motion.div>
-
-<motion.div
-  animate={{
-    y: [3, -3, 3],
-  }}
-  transition={{
-    duration: 6,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className=" pointer-events-none absolute bottom-0 left-1/2 z-20 -translate-x-1/2 will-change-transform">
-  <div
-    className=" flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/35 bg-white/90 p-1.5 shadow-[0_0_18px_rgba(6,182,212,0.15)] backdrop-blur-md transition-colors dark:bg-[#080d1a]/95 sm:h-11 sm:w-11 sm:p-2 md:h-12 md:w-12 lg:h-14 lg:w-14 lg:p-3">
-    <Image src="https://cdn.simpleicons.org/tailwindcss" alt="Tailwind CSS" width={32} height={32} unoptimized className=" h-5 w-5 object-contain sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"/>
-  </div>
-</motion.div>
-
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs lg:text-xs">
+        JavaScript
+      </span>
     </motion.div>
 
+    {/* ================= REACT ================= */}
+    <motion.div
+      animate={{ y: [6, -6, 6] }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className=" absolute right-[-2px] top-[48px] z-20 flex flex-col items-center sm:right-[-3px] sm:top-[58px] md:right-[-4px] md:top-[70px] lg:right-[-5px] lg:top-[75px]">
+      <div
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur-md sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-react-original colored text-2xl sm:text-3xl lg:text-4xl" />
+      </div>
+
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs">
+        React
+      </span>
+    </motion.div>
+
+    {/* ================= NEXT.JS ================= */}
+    <motion.div
+      animate={{ y: [-5, 5, -5] }}
+      transition={{
+        duration: 3.8,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className=" absolute right-[-2px] top-1/2 z-20 flex -translate-y-1/2 flex-col items-center sm:right-[-3px] md:right-[-4px] lg:right-[-5px]">
+      <div
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur-md sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-nextjs-plain text-2xl sm:text-3xl lg:text-4xl" />
+      </div>
+
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs">
+        Next.js
+      </span>
+    </motion.div>
+
+    {/* ================= NODE.JS ================= */}
+    <motion.div
+      animate={{ y: [6, -6, 6] }}
+      transition={{
+        duration: 4.2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className=" absolute bottom-[48px] right-[-2px] z-20 flex flex-col items-center sm:bottom-[58px] sm:right-[-3px] md:bottom-[70px] md:right-[-4px] lg:bottom-[75px] lg:right-[-5px]">
+      <div
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur-md sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-nodejs-plain colored text-2xl sm:text-3xl lg:text-4xl" />
+      </div>
+
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs">
+        Node.js
+      </span>
+    </motion.div>
+
+    {/* ================= EXPRESS ================= */}
+    <motion.div
+      animate={{ y: [-6, 6, -6] }}
+      transition={{
+        duration: 3.6,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className=" absolute bottom-[-2px] left-1/2 z-20 flex -translate-x-1/2 flex-col items-center sm:bottom-[-3px] lg:bottom-[-5px]">
+      <div
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur-md sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-express-original text-2xl sm:text-3xl lg:text-4xl" />
+      </div>
+
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs">
+        Express.js
+      </span>
+    </motion.div>
+
+    {/* ================= MONGODB ================= */}
+    <motion.div
+      animate={{ y: [5, -5, 5] }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className=" absolute bottom-[48px] left-[-2px] z-20 flex flex-col items-center sm:bottom-[58px] sm:left-[-3px] md:bottom-[70px] md:left-[-4px] lg:bottom-[75px] lg:left-[-5px]">
+      <div
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur-md sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-mongodb-plain colored text-2xl sm:text-3xl lg:text-4xl" />
+      </div>
+
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs">
+        MongoDB
+      </span>
+    </motion.div>
+
+    {/* ================= TAILWIND ================= */}
+    <motion.div
+      animate={{ y: [-6, 6, -6] }}
+      transition={{
+        duration: 3.7,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className=" absolute left-[-2px] top-1/2 z-20 flex -translate-y-1/2 flex-col items-center sm:left-[-3px] md:left-[-4px] lg:left-[-5px]">
+      <div
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-tailwindcss-original colored text-2xl sm:text-3xl lg:text-4xl" />
+      </div>
+
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs">
+        Tailwind CSS
+      </span>
+    </motion.div>
+
+    {/* ================= FRAMER MOTION ================= */}
+    <motion.div
+      animate={{ y: [5, -5, 5] }}
+      transition={{
+        duration: 4.1,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className=" absolute left-[-2px] top-[48px] z-20 flex flex-col items-ce sm:left-[-3px] sm:top-[58px] md:left-[-4px] md:top-[70px] lg:left-[-5px] lg:top-[75px]">
+      <div
+        className=" flex h-10 w-10 items-center justify-center rounded-xl border border-sky-500/20 bg-card shadow-lg backdrop-blur sm:h-11 sm:w-11 md:h-13 md:w-13 lg:h-14 lg:w-14">
+        <i className="devicon-framermotion-original text-2xl sm:text-3xl lg:text-4xl" />
+      </div>
+
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs">
+        Framer Motion
+      </span>
+    </motion.div>
+  </div>
+</motion.div>
       </div>
     </section>
   );
