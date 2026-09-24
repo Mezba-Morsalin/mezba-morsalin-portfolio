@@ -9,7 +9,7 @@ export async function GET() {
 
 export async function POST(request) {
   console.log("EMAIL_USER:", process.env.EMAIL_USER);
-  console.log("EMAIL_PASS:", process.env.EMAIL_PASS?.length);
+  console.log("EMAIL_PASS length:", process.env.EMAIL_PASS?.length);
 
   try {
     const { name, email, subject, message } = await request.json();
@@ -40,25 +40,23 @@ export async function POST(request) {
       replyTo: email,
       subject: `📩 ${subject}`,
       html: `
-      <div style="font-family:Arial,sans-serif;padding:30px;background:#f5f5f5;">
-        <div style="max-width:600px;margin:auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,.08);">
+        <div style="font-family: Arial, sans-serif; padding: 30px; background: #f5f5f5;">
+          <div style="max-width: 600px; margin: auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,.08);">
 
-          <h2 style="color:#2563eb;">
-            📩 New Portfolio Contact
-          </h2>
+            <h2 style="color: #2563eb;">
+              📩 New Portfolio Contact
+            </h2>
 
-          <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
 
-          <p><strong>Email:</strong> ${email}</p>
+            <hr style="margin: 20px 0">
 
-          <p><strong>Subject:</strong> ${subject}</p>
+            <p>${message}</p>
 
-          <hr style="margin:20px 0">
-
-          <p>${message}</p>
-
+          </div>
         </div>
-      </div>
       `,
     });
 
@@ -72,7 +70,7 @@ export async function POST(request) {
     return NextResponse.json(
       {
         success: false,
-        message: error.message,
+        message: error.message || "Something went wrong.",
       },
       {
         status: 500,
