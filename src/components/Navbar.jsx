@@ -189,7 +189,7 @@ Morsalin </h2> </Link>
           <a
             href="#contact"
             onClick={closeMobileMenu}
-            className="mt-4 block rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-5 py-3 text-center font-mono font-semibold text-white"
+            className="mt-4 block rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)] disabled:cursor-not-allowed disabled:opacity-70 text-center"
           >
             Hire Me
           </a>

@@ -37,7 +37,7 @@ export default function About() {
 
           <h2 className="font-mono text-4xl font-black md:text-5xl">
             Building{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
               Modern Web Solutions
             </span>
           </h2>

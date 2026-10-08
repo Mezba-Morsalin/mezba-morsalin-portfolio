@@ -82,7 +82,7 @@ export default function Hero() {
           {/* Heading */}
           <h1 className="mt-8 text-4xl font-black leading-tight sm:text-5xl lg:text-7xl">
             I&apos;m{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
               Mezba Morsalin
             </span>
           </h1>
@@ -119,7 +119,7 @@ export default function Hero() {
             <a href="#contact">
               <Button
                 size="lg"
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-[0_0_10px_rgba(14,165,233,0.5)] hover:opacity-90 sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               >
                 <span>Hire Me</span>
                 <ArrowRight className="h-4 w-4" />

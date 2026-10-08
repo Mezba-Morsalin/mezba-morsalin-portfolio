@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { AnimatePresence, motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
@@ -19,7 +18,8 @@ export default function ThemeToggle() {
     );
   }
 
-  const isDark = (theme === "system" ? resolvedTheme : theme) === "dark";
+  const isDark =
+    (theme === "system" ? resolvedTheme : theme) === "dark";
 
   return (
     <button
@@ -28,41 +28,19 @@ export default function ThemeToggle() {
       aria-label="Toggle Theme"
       className="relative flex h-11 w-20 items-center rounded-full border border-border bg-muted px-1 transition-colors duration-200 focus:outline-none"
     >
+      {/* Sliding Icon */}
       <div
-        className={`absolute flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-transform duration-200 ease-out transform-gpu ${
+        className={`absolute flex h-9 w-9 items-center justify-center rounded-full shadow-md transition-transform duration-200 ease-out ${
           isDark
             ? "translate-x-9 bg-slate-900 text-yellow-300"
             : "translate-x-0 bg-white text-orange-500"
         }`}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {isDark ? (
-            <motion.div
-              key="moon"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="flex items-center justify-center"
-            >
-              <Moon size={18} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="sun"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="flex items-center justify-center"
-            >
-              <Sun size={18} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {isDark ? <Moon size={18} /> : <Sun size={18} />}
       </div>
 
-      <div className="flex w-full justify-between px-2 text-muted-foreground pointer-events-none">
+      {/* Background Icons */}
+      <div className="pointer-events-none flex w-full justify-between px-2 text-muted-foreground">
         <Sun size={16} />
         <Moon size={16} />
       </div>
