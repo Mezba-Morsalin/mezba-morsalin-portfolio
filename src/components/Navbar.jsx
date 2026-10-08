@@ -38,22 +38,23 @@ const sections = menus
 
 const observer = new IntersectionObserver(
   (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+    const visibleSection = entries.find(
+      (entry) => entry.isIntersecting
+    );
 
-      const menu = menus.find(
-        (item) => item.href.slice(1) === entry.target.id
-      );
+    if (!visibleSection) return;
 
-      if (menu) {
-        setActive((prev) =>
-          prev !== menu.name ? menu.name : prev
-        );
-      }
-    });
+    const menu = menus.find(
+      (item) => item.href.slice(1) === visibleSection.target.id
+    );
+
+    if (menu) {
+      setActive(menu.name);
+    }
   },
   {
-    threshold: 0.4,
+    threshold: 0.25,
+    rootMargin: "-15% 0px -60% 0px",
   }
 );
 
@@ -63,11 +64,16 @@ return () => observer.disconnect();
 
 }, []);
 
-return ( <header className="fixed left-0 top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-xl transform-gpu"> <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+const closeMobileMenu = () => {
+setMobileMenu(false);
+};
+
+return ( <header className="fixed left-0 top-0 z-50 w-full border-b border-border bg-background/95 lg:bg-background/85 lg:backdrop-blur-lg"> <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
 {/* Logo */} <Link
        href="#home"
        className="flex items-center gap-3"
        aria-label="Go to homepage"
+       onClick={closeMobileMenu}
      > <h2 className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text font-mono text-xl font-bold text-transparent">
 Mezba<span className="text-sky-500">.</span>
 Morsalin </h2> </Link>
@@ -93,8 +99,8 @@ Morsalin </h2> </Link>
                 className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-sky-500"
                 transition={{
                   type: "spring",
-                  stiffness: 380,
-                  damping: 28,
+                  stiffness: 500,
+                  damping: 35,
                 }}
               />
             )}
@@ -109,7 +115,7 @@ Morsalin </h2> </Link>
 
       <a
         href="#contact"
-        className="rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-6 py-3 font-mono text-sm font-semibold text-white transition hover:scale-105"
+        className="rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-6 py-3 font-mono text-sm font-semibold text-white transition-transform duration-200 hover:scale-105"
       >
         Hire Me
       </a>
@@ -119,16 +125,16 @@ Morsalin </h2> </Link>
     <Button
       size="icon"
       variant="outline"
-      onClick={() => setMobileMenu(!mobileMenu)}
+      onClick={() => setMobileMenu((prev) => !prev)}
       aria-label={mobileMenu ? "Close Menu" : "Open Menu"}
       className="rounded-xl lg:hidden"
     >
-      {mobileMenu ? <X size={26} /> : <Menu size={26} />}
+      {mobileMenu ? <X size={24} /> : <Menu size={24} />}
     </Button>
   </nav>
 
   {/* Mobile Menu */}
-  <AnimatePresence>
+  <AnimatePresence initial={false}>
     {mobileMenu && (
       <motion.div
         initial={{
@@ -144,10 +150,10 @@ Morsalin </h2> </Link>
           height: 0,
         }}
         transition={{
-          duration: 0.2,
-          ease: "easeInOut",
+          duration: 0.16,
+          ease: "easeOut",
         }}
-        className="overflow-hidden border-t border-border bg-background backdrop-blur-xl lg:hidden will-change-transform"
+        className="overflow-hidden border-t border-border bg-background lg:hidden"
       >
         <div className="space-y-2 p-6">
           {menus.map((item) => {
@@ -159,7 +165,7 @@ Morsalin </h2> </Link>
                 href={item.href}
                 onClick={() => {
                   setActive(item.name);
-                  setMobileMenu(false);
+                  closeMobileMenu();
                 }}
                 className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-colors duration-150 ${
                   active === item.name
@@ -182,7 +188,7 @@ Morsalin </h2> </Link>
 
           <a
             href="#contact"
-            onClick={() => setMobileMenu(false)}
+            onClick={closeMobileMenu}
             className="mt-4 block rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-5 py-3 text-center font-mono font-semibold text-white"
           >
             Hire Me
