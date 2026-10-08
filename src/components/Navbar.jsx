@@ -3,179 +3,194 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  Menu,
-  X,
-  Home,
-  User,
-  Code2,
-  BriefcaseBusiness,
-  BadgeCheck,
-  FolderGit2,
-  Mail,
+Menu,
+X,
+Home,
+User,
+Code2,
+BriefcaseBusiness,
+BadgeCheck,
+FolderGit2,
+Mail,
 } from "lucide-react";
 import ThemeToggle from "./ui/ThemeToggle";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
 const menus = [
-  { name: "Home", href: "#home", icon: Home },
-  { name: "About", href: "#about", icon: User },
-  { name: "Skills", href: "#skills", icon: Code2 },
-  { name: "Services", href: "#services", icon: BriefcaseBusiness },
-  { name: "Experience", href: "#experience", icon: BadgeCheck },
-  { name: "Projects", href: "#projects", icon: FolderGit2 },
-  { name: "Contact", href: "#contact", icon: Mail },
+{ name: "Home", href: "#home", icon: Home },
+{ name: "About", href: "#about", icon: User },
+{ name: "Skills", href: "#skills", icon: Code2 },
+{ name: "Services", href: "#services", icon: BriefcaseBusiness },
+{ name: "Experience", href: "#experience", icon: BadgeCheck },
+{ name: "Projects", href: "#projects", icon: FolderGit2 },
+{ name: "Contact", href: "#contact", icon: Mail },
 ];
 
 export default function Navbar() {
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const [active, setActive] = useState("Home");
+const [mobileMenu, setMobileMenu] = useState(false);
+const [active, setActive] = useState("Home");
 
-  useEffect(() => {
-    const sections = menus
-      .map((menu) => document.querySelector(menu.href))
-      .filter(Boolean);
+useEffect(() => {
+const sections = menus
+.map((menu) => document.querySelector(menu.href))
+.filter(Boolean);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
 
-          const menu = menus.find(
-            (item) => item.href.slice(1) === entry.target.id
-          );
+      const menu = menus.find(
+        (item) => item.href.slice(1) === entry.target.id
+      );
 
-          if (menu) {
-            setActive((prev) => (prev !== menu.name ? menu.name : prev));
-          }
-        });
-      },
-      {
-        threshold: 0.4,
+      if (menu) {
+        setActive((prev) =>
+          prev !== menu.name ? menu.name : prev
+        );
       }
-    );
+    });
+  },
+  {
+    threshold: 0.4,
+  }
+);
 
-    sections.forEach((section) => observer.observe(section));
+sections.forEach((section) => observer.observe(section));
 
-    return () => observer.disconnect();
-  }, []);
+return () => observer.disconnect();
 
-  return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-border bg-background/95 lg:bg-background/80 lg:backdrop-blur-xl transform-gpu">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        {/* Logo */}
-        <Link href="#home" className="flex items-center gap-3">
-          <h2 className="text-xl font-bold font-mono bg-linear-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
-            Mezba<span className="text-sky-500">.</span>Morsalin
-          </h2>
-        </Link>
+}, []);
 
-        {/* Desktop Menu */}
-        <ul className="hidden items-center gap-10 lg:flex">
-          {menus.map((item) => (
-            <li key={item.name}>
+return ( <header className="fixed left-0 top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-xl transform-gpu"> <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+{/* Logo */} <Link
+       href="#home"
+       className="flex items-center gap-3"
+       aria-label="Go to homepage"
+     > <h2 className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text font-mono text-xl font-bold text-transparent">
+Mezba<span className="text-sky-500">.</span>
+Morsalin </h2> </Link>
+
+    {/* Desktop Menu */}
+    <ul className="hidden items-center gap-10 lg:flex">
+      {menus.map((item) => (
+        <li key={item.name}>
+          <a
+            href={item.href}
+            onClick={() => setActive(item.name)}
+            className={`relative font-mono text-[15px] font-medium tracking-wide transition-colors duration-200 ${
+              active === item.name
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {item.name}
+
+            {active === item.name && (
+              <motion.div
+                layoutId="navbar"
+                className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-sky-500"
+                transition={{
+                  type: "spring",
+                  stiffness: 380,
+                  damping: 28,
+                }}
+              />
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {/* Desktop Right */}
+    <div className="hidden items-center gap-3 lg:flex">
+      <ThemeToggle />
+
+      <a
+        href="#contact"
+        className="rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-6 py-3 font-mono text-sm font-semibold text-white transition hover:scale-105"
+      >
+        Hire Me
+      </a>
+    </div>
+
+    {/* Mobile Toggle */}
+    <Button
+      size="icon"
+      variant="outline"
+      onClick={() => setMobileMenu(!mobileMenu)}
+      aria-label={mobileMenu ? "Close Menu" : "Open Menu"}
+      className="rounded-xl lg:hidden"
+    >
+      {mobileMenu ? <X size={26} /> : <Menu size={26} />}
+    </Button>
+  </nav>
+
+  {/* Mobile Menu */}
+  <AnimatePresence>
+    {mobileMenu && (
+      <motion.div
+        initial={{
+          opacity: 0,
+          height: 0,
+        }}
+        animate={{
+          opacity: 1,
+          height: "auto",
+        }}
+        exit={{
+          opacity: 0,
+          height: 0,
+        }}
+        transition={{
+          duration: 0.2,
+          ease: "easeInOut",
+        }}
+        className="overflow-hidden border-t border-border bg-background backdrop-blur-xl lg:hidden will-change-transform"
+      >
+        <div className="space-y-2 p-6">
+          {menus.map((item) => {
+            const Icon = item.icon;
+
+            return (
               <a
+                key={item.name}
                 href={item.href}
-                onClick={() => setActive(item.name)}
-                className={`relative font-mono text-[15px] font-medium tracking-wide transition-colors duration-200 ${
+                onClick={() => {
+                  setActive(item.name);
+                  setMobileMenu(false);
+                }}
+                className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-colors duration-150 ${
                   active === item.name
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-sky-500 text-white"
+                    : "text-foreground hover:bg-muted"
                 }`}
               >
-                {item.name}
+                <Icon size={20} />
 
-                {active === item.name && (
-                  <motion.div
-                    layoutId="navbar"
-                    className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-sky-500"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 28,
-                    }}
-                  />
-                )}
+                <span className="font-mono text-[15px] font-medium tracking-wide">
+                  {item.name}
+                </span>
               </a>
-            </li>
-          ))}
-        </ul>
+            );
+          })}
 
-        {/* Desktop Right */}
-        <div className="hidden items-center gap-3 lg:flex">
-          <ThemeToggle />
+          <div className="flex justify-center py-3">
+            <ThemeToggle />
+          </div>
 
           <a
             href="#contact"
-            className="rounded-xl font-mono bg-linear-to-r from-blue-600 to-cyan-400 px-6 py-3 text-sm font-semibold text-white transition hover:scale-105"
+            onClick={() => setMobileMenu(false)}
+            className="mt-4 block rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-5 py-3 text-center font-mono font-semibold text-white"
           >
             Hire Me
           </a>
         </div>
-
-        {/* Mobile Toggle */}
-        <Button
-          size="icon"
-          variant="outline"
-          onClick={() => setMobileMenu(!mobileMenu)}
-          aria-label="Toggle Menu"
-          className="rounded-xl lg:hidden"
-        >
-          {mobileMenu ? <X size={26} /> : <Menu size={26} />}
-        </Button>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenu && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-border bg-background lg:hidden will-change-transform"
-          >
-            <div className="space-y-2 p-6">
-              {menus.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => {
-                      setActive(item.name);
-                      setMobileMenu(false);
-                    }}
-                    className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-colors duration-150 ${
-                      active === item.name
-                        ? "bg-sky-500 text-white"
-                        : "text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    <Icon size={20} />
-                    <span className="font-mono text-[15px] font-medium tracking-wide">
-                      {item.name}
-                    </span>
-                  </a>
-                );
-              })}
-
-              <div className="flex justify-center py-3">
-                <ThemeToggle />
-              </div>
-
-              <a
-                href="#contact"
-                onClick={() => setMobileMenu(false)}
-                className="mt-4 font-mono block rounded-xl bg-linear-to-r from-blue-600 to-cyan-400 px-5 py-3 text-center font-semibold text-white"
-              >
-                Hire Me
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-  );
+      </motion.div>
+    )}
+  </AnimatePresence>
+</header>
+);
 }

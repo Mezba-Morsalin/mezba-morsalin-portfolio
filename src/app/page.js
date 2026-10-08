@@ -9,17 +9,6 @@ import Services from "@/components/Services";
 import Skills from "@/components/Skills";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen w-full bg-background text-foreground">
-      <Hero />
-      <About/>
-      <TechMarquee />
-      <Skills/>
-      <Services/>
-      <Experience/>
-      <Projects/>
-      <Contact/>
-      <Footer/>
-    </main>
-  );
+return ( <main className="min-h-screen w-full text-foreground"> <Hero /> <About /> <TechMarquee /> <Skills /> <Services /> <Experience /> <Projects /> <Contact /> <Footer /> </main>
+);
 }
