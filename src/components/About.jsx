@@ -25,17 +25,17 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative scroll-mt-20 overflow-hidden py-28"
+      className="relative scroll-mt-20 overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28"
     >
-      {/* ================= Main Content ================= */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* ================= Heading ================= */}
-        <div className="mb-20 text-center">
-          <p className="mb-3 font-mono text-sm font-semibold uppercase tracking-[8px] text-primary">
+      {/* Main Content */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Heading */}
+        <div className="mb-12 text-center sm:mb-16 lg:mb-20">
+          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[5px] text-primary sm:text-sm sm:tracking-[8px]">
             About Me
           </p>
 
-          <h2 className="font-mono text-4xl font-black md:text-5xl">
+          <h2 className="mx-auto max-w-4xl font-mono text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-5xl">
             Building{" "}
             <span className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
               Modern Web Solutions
@@ -43,35 +43,34 @@ export default function About() {
           </h2>
         </div>
 
-        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-30">
-          {/* ================= LEFT CONTENT ================= */}
+        {/* Main Grid */}
+        <div className="grid min-w-0 grid-cols-1 items-center gap-12 sm:gap-14 lg:grid-cols-2 lg:gap-12 xl:gap-20">
+          {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: 70 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{
-              duration: 0.8,
+              duration: 0.7,
               ease: "easeOut",
             }}
+            className="min-w-0"
           >
-            <h3 className="text-3xl font-bold leading-tight md:text-4xl">
+            <h3 className="text-2xl font-bold leading-tight sm:text-3xl md:text-4xl">
               Crafting Modern,
-              <br />
-              Scalable Web Applications.
+              <br className="hidden sm:block" /> Scalable Web Applications.
             </h3>
 
-            <p className="mt-8 text-lg leading-8 text-muted-foreground">
+            <p className="mt-5 text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-8">
               I&apos;m{" "}
-              <strong className="text-foreground">
-                Mezba Morsalin
-              </strong>
-              , a passionate Frontend Developer specializing in modern web
+              <strong className="text-foreground">Mezba Morsalin</strong>, a
+              passionate Frontend Developer specializing in modern web
               technologies, including React.js, Next.js, JavaScript, and
               Tailwind CSS. I also have experience with Node.js, Express.js,
               and MongoDB for building complete web solutions.
             </p>
 
-            <p className="mt-5 text-lg leading-8 text-muted-foreground">
+            <p className="mt-4 text-base leading-7 text-muted-foreground sm:mt-5 sm:text-lg sm:leading-8">
               I enjoy transforming ideas into modern, responsive, and
               user-friendly web applications through clean code, thoughtful
               design, and seamless user experiences. I continuously improve my
@@ -79,23 +78,23 @@ export default function About() {
               experiences that are both functional and visually engaging.
             </p>
 
-            {/* ================= Stats ================= */}
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5">
+            {/* Stats */}
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5">
               {stats.map((item) => (
                 <motion.div
                   key={item.title}
                   whileHover={{ y: -4 }}
                   transition={{
-                    duration: 0.25,
+                    duration: 0.2,
                     ease: "easeOut",
                   }}
-                  className="rounded-3xl border border-primary/30 bg-card p-5 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_0_35px_rgba(14,165,233,0.12)] sm:p-6"
+                  className="min-w-0 rounded-2xl border border-primary/30 bg-card p-4 transition-shadow duration-300 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(14,165,233,0.12)] sm:rounded-3xl sm:p-6"
                 >
-                  <h3 className="bg-gradient-to-r from-primary to-accent bg-clip-text text-lg font-black text-transparent sm:text-xl">
+                  <h3 className="break-words bg-gradient-to-r from-primary to-accent bg-clip-text text-base font-black text-transparent sm:text-xl">
                     {item.number}
                   </h3>
 
-                  <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground sm:text-sm md:text-base">
                     {item.title}
                   </p>
                 </motion.div>
@@ -103,18 +102,18 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* ================= RIGHT CONTENT ================= */}
+          {/* Right Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{
               duration: 0.6,
-              delay: 0.2,
+              delay: 0.1,
             }}
-            className="relative flex min-h-[540px] w-full items-center justify-center px-1 sm:min-h-[600px] sm:px-3 md:min-h-[640px] md:px-4 lg:min-h-[650px] lg:px-0"
+            className="relative flex min-h-0 w-full min-w-0 items-center justify-center px-0 py-4 sm:px-3 sm:py-6 lg:min-h-[540px] lg:px-0 xl:min-h-[600px]"
           >
-            {/* ================= Editor Glow ================= */}
+            {/* Editor Glow */}
             <motion.div
               animate={{
                 opacity: [0.2, 0.4, 0.2],
@@ -128,7 +127,7 @@ export default function About() {
               className="pointer-events-none absolute hidden h-[420px] w-[420px] rounded-full bg-accent/20 blur-[100px] lg:block xl:h-[500px] xl:w-[500px]"
             />
 
-            {/* ================= Rotating Gradient Border ================= */}
+            {/* Rotating Gradient Border */}
             <motion.div
               animate={{
                 rotate: 360,
@@ -143,21 +142,21 @@ export default function About() {
               <div className="m-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)] rounded-[44px] bg-background" />
             </motion.div>
 
-            {/* ================= Main Editor Area ================= */}
-            <div className="relative z-10 w-full max-w-[470px]">
-              {/* Developer.js Code Window */}
+            {/* Main Editor */}
+            <div className="relative z-10 w-full min-w-0 max-w-[470px]">
+              {/* Editor Window */}
               <motion.div
                 animate={{
-                  y: [-4, 4, -4],
+                  y: [-3, 3, -3],
                 }}
                 transition={{
                   duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="relative w-full overflow-hidden rounded-2xl border border-primary/30 bg-[#080d1a] shadow-[0_0_40px_rgba(14,165,233,0.14)] will-change-transform sm:rounded-3xl lg:shadow-[0_0_50px_rgba(14,165,233,0.18)]"
+                className="relative w-full min-w-0 overflow-hidden rounded-2xl border border-primary/30 bg-[#080d1a] shadow-[0_0_35px_rgba(14,165,233,0.14)] will-change-transform sm:rounded-3xl lg:shadow-[0_0_50px_rgba(14,165,233,0.18)]"
               >
-                {/* ================= Editor Header ================= */}
+                {/* Editor Header */}
                 <div className="flex h-12 items-center justify-between border-b border-white/10 bg-[#0d1424] px-3 sm:h-14 sm:px-5">
                   <div className="flex items-center gap-1.5 sm:gap-2">
                     <span className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3" />
@@ -172,35 +171,24 @@ export default function About() {
                   <div className="w-7 sm:w-10" />
                 </div>
 
-                {/* ================= Code Content ================= */}
-                <div className="w-full overflow-hidden px-3 py-5 sm:px-5 sm:py-6 md:px-6">
-                  <div className="flex w-full gap-2 font-mono text-[8px] leading-[1.95] sm:gap-3 sm:text-[10px] sm:leading-7 md:gap-4 md:text-xs lg:text-sm">
+                {/* Code Content */}
+                <div className="w-full min-w-0 overflow-x-auto px-2 py-5 sm:px-4 sm:py-6 md:px-6">
+                  <div className="flex min-w-max gap-2 font-mono text-[9px] leading-[1.95] sm:gap-3 sm:text-[10px] sm:leading-7 md:gap-4 md:text-xs lg:text-sm">
                     {/* Line Numbers */}
                     <div className="shrink-0 select-none text-right text-slate-600">
-                      <div>01</div>
-                      <div>02</div>
-                      <div>03</div>
-                      <div>04</div>
-                      <div>05</div>
-                      <div>06</div>
-                      <div>07</div>
-                      <div>08</div>
-                      <div>09</div>
-                      <div>10</div>
-                      <div>11</div>
-                      <div>12</div>
-                      <div>13</div>
+                      {Array.from({ length: 13 }, (_, index) => (
+                        <div key={index}>
+                          {String(index + 1).padStart(2, "0")}
+                        </div>
+                      ))}
                     </div>
 
                     {/* Code */}
-                    <div className="min-w-0 flex-1 whitespace-nowrap">
+                    <div className="whitespace-nowrap">
                       <div>
                         <span className="text-purple-400">const</span>{" "}
-                        <span className="text-yellow-300">
-                          developer
-                        </span>{" "}
-                        <span className="text-white">=</span>{" "}
-                        <span className="text-white">{"{"}</span>
+                        <span className="text-yellow-300">developer</span>{" "}
+                        <span className="text-white">= {"{"}</span>
                       </div>
 
                       <div className="pl-3 sm:pl-4">
@@ -279,7 +267,7 @@ export default function About() {
                   </div>
                 </div>
 
-                {/* ================= Status Bar ================= */}
+                {/* Status Bar */}
                 <div className="flex h-8 items-center justify-between border-t border-white/10 bg-[#0d1424] px-3 sm:px-4">
                   <div className="flex items-center gap-1.5 text-[8px] text-slate-400 sm:gap-2 sm:text-[10px]">
                     <span className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2" />

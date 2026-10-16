@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Menu,
@@ -13,8 +13,8 @@ import {
   FolderGit2,
   Mail,
 } from "lucide-react";
-import ThemeToggle from "./ui/ThemeToggle";
 import Link from "next/link";
+import ThemeToggle from "./ui/ThemeToggle";
 import { Button } from "./ui/button";
 
 const menus = [
@@ -27,15 +27,18 @@ const menus = [
   { name: "Contact", href: "#contact", icon: Mail },
 ];
 
+const NAVBAR_OFFSET = 100;
+
 export default function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [active, setActive] = useState("Home");
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  useEffect(() => {
-    let ticking = false;
+  const frameId = useRef(null);
+  const lastActive = useRef("Home");
 
-    const updateScrollProgress = () => {
+  useEffect(() => {
+    const updateScrollState = () => {
       const scrollHeight =
         document.documentElement.scrollHeight - window.innerHeight;
 
@@ -43,74 +46,51 @@ export default function Navbar() {
         scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
 
       setScrollProgress(Math.min(100, Math.max(0, progress)));
-      ticking = false;
-    };
 
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateScrollProgress);
-        ticking = true;
-      }
-    };
-
-    updateScrollProgress();
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    let ticking = false;
-
-    const updateActiveSection = () => {
-      const scrollPosition = window.scrollY + 180;
-      const pageHeight = document.documentElement.scrollHeight;
+      const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-
-      if (window.scrollY < 50) {
-        setActive("Home");
-        ticking = false;
-        return;
-      }
-
-      if (window.scrollY + windowHeight >= pageHeight - 5) {
-        setActive("Contact");
-        ticking = false;
-        return;
-      }
+      const documentHeight = document.documentElement.scrollHeight;
 
       let currentSection = "Home";
 
-      menus.forEach((menu) => {
-        const section = document.querySelector(menu.href);
+      if (scrollY < 50) {
+        currentSection = "Home";
+      } else if (scrollY + windowHeight >= documentHeight - 5) {
+        currentSection = "Contact";
+      } else {
+        const detectionLine = scrollY + NAVBAR_OFFSET + 20;
 
-        if (!section) return;
+        for (const item of menus) {
+          const section = document.querySelector(item.href);
 
-        const sectionTop =
-          section.getBoundingClientRect().top + window.scrollY;
+          if (!section) continue;
 
-        if (sectionTop <= scrollPosition) {
-          currentSection = menu.name;
+          const sectionTop =
+            section.getBoundingClientRect().top + window.scrollY;
+
+          if (sectionTop <= detectionLine) {
+            currentSection = item.name;
+          } else {
+            break;
+          }
         }
-      });
+      }
 
-      setActive(currentSection);
-      ticking = false;
+      if (lastActive.current !== currentSection) {
+        lastActive.current = currentSection;
+        setActive(currentSection);
+      }
+
+      frameId.current = null;
     };
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateActiveSection);
-        ticking = true;
-      }
+      if (frameId.current !== null) return;
+
+      frameId.current = window.requestAnimationFrame(updateScrollState);
     };
 
-    updateActiveSection();
+    updateScrollState();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
@@ -118,13 +98,43 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+
+      if (frameId.current !== null) {
+        window.cancelAnimationFrame(frameId.current);
+      }
     };
   }, []);
 
-  const closeMobileMenu = () => setMobileMenu(false);
+  const handleMenuClick = (item) => {
+  const section = document.getElementById(item.href.slice(1));
+
+  if (!section) return;
+
+  setMobileMenu(false);
+
+  lastActive.current = item.name;
+  setActive(item.name);
+
+  const targetPosition =
+    section.getBoundingClientRect().top + window.scrollY - 80;
+
+  // Update the URL without triggering native anchor navigation.
+  window.history.replaceState(null, "", item.href);
+
+  // Use only one scrolling mechanism.
+  window.scrollTo({
+    top: Math.max(0, targetPosition),
+    behavior: "smooth",
+  });
+};
+
+const handleHireMe = () => {
+  const contactItem = menus.find((item) => item.name === "Contact");
+  handleMenuClick(contactItem);
+};
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-border bg-background/95 lg:bg-background/85 lg:backdrop-blur-lg">
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-lg">
       {/* Scroll Progress Bar */}
       <div className="absolute bottom-0 left-0 z-[60] h-[3px] w-full bg-transparent">
         <div
@@ -139,10 +149,9 @@ export default function Navbar() {
         <Link
           href="#home"
           aria-label="Go to homepage"
-          onClick={() => {
-            setActive("Home");
-            closeMobileMenu();
-          }}
+          onClick={(event) =>
+            handleMenuClick(event, menus[0])
+          }
           className="flex shrink-0 items-center"
         >
           <h2 className="whitespace-nowrap bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text font-mono text-lg font-bold text-transparent sm:text-xl">
@@ -154,29 +163,25 @@ export default function Navbar() {
         <ul className="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-6">
           {menus.map((item) => (
             <li key={item.name} className="shrink-0">
-              <a
-                href={item.href}
-                onClick={() => setActive(item.name)}
-                className={`relative whitespace-nowrap font-mono text-xs font-medium tracking-wide transition-colors duration-200 xl:text-sm ${
-                  active === item.name
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {item.name}
+              <button
+  type="button"
+  onClick={() => handleMenuClick(item)}
+  aria-current={active === item.name ? "location" : undefined}
+  className={`relative whitespace-nowrap font-mono text-xs font-medium tracking-wide transition-colors duration-200 xl:text-sm ${
+    active === item.name
+      ? "text-foreground"
+      : "text-muted-foreground hover:text-foreground"
+  }`}
+>
+  {item.name}
 
-                {active === item.name && (
-                  <motion.div
-                    layoutId="navbar"
-                    className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-sky-500"
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 35,
-                    }}
-                  />
-                )}
-              </a>
+  {active === item.name && (
+    <motion.span
+      layoutId="navbar-indicator"
+      className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-sky-500"
+    />
+  )}
+</button>
             </li>
           ))}
         </ul>
@@ -187,7 +192,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            onClick={() => setActive("Contact")}
+            onClick={handleHireMe}
             className="whitespace-nowrap rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-4 py-3 font-mono text-sm font-semibold text-white transition-transform duration-200 hover:scale-105 xl:px-6"
           >
             Hire Me
@@ -198,8 +203,8 @@ export default function Navbar() {
         <Button
           size="icon"
           variant="outline"
-          onClick={() => setMobileMenu((prev) => !prev)}
-          aria-label={mobileMenu ? "Close Menu" : "Open Menu"}
+          onClick={() => setMobileMenu((previous) => !previous)}
+          aria-label={mobileMenu ? "Close menu" : "Open menu"}
           aria-expanded={mobileMenu}
           className="shrink-0 rounded-xl lg:hidden"
         >
@@ -214,7 +219,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.16, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="overflow-hidden border-t border-border bg-background lg:hidden"
           >
             <div className="space-y-2 p-4 sm:p-6">
@@ -225,11 +230,11 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    onClick={() => {
-                      setActive(item.name);
-                      closeMobileMenu();
-                    }}
-                    className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-colors duration-150 ${
+                    onClick={(event) => handleMenuClick(event, item)}
+                    aria-current={
+                      active === item.name ? "location" : undefined
+                    }
+                    className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-colors duration-200 ${
                       active === item.name
                         ? "bg-sky-500 text-white"
                         : "text-foreground hover:bg-muted"
@@ -250,11 +255,8 @@ export default function Navbar() {
 
               <a
                 href="#contact"
-                onClick={() => {
-                  setActive("Contact");
-                  closeMobileMenu();
-                }}
-                className="mt-4 block rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 text-center font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
+                onClick={handleHireMe}
+                className="mt-4 block rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 text-center font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-shadow duration-200 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
               >
                 Hire Me
               </a>
