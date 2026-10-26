@@ -1,3 +1,4 @@
+
 import "./globals.css";
 
 import Cursor from "@/components/ui/Cursor";
@@ -28,48 +29,41 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body className="relative min-h-full bg-background">
+      <body className="relative min-h-full bg-background text-foreground">
         <ThemeProvider>
           <SmoothScroll>
-            {/* Global Website Background */}
+            {/* Minimal monochrome global background */}
             <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-              {/* Main atmospheric background */}
+              {/* Base background */}
               <div className="absolute inset-0 bg-background" />
 
-              {/* Top blue glow */}
-              <div className="absolute left-1/2 top-[-15%] h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/10 blur-[150px] dark:bg-primary/15" />
-
-              {/* Left cyan glow */}
-              <div className="absolute left-[-15%] top-[25%] h-[500px] w-[500px] rounded-full bg-accent/8 blur-[140px] dark:bg-accent/10" />
-
-              {/* Right blue glow */}
-              <div className="absolute right-[-15%] top-[50%] h-[600px] w-[600px] rounded-full bg-primary/8 blur-[160px] dark:bg-primary/10" />
-
-              {/* Bottom ambient glow */}
-              <div className="absolute bottom-[-15%] left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-accent/6 blur-[150px] dark:bg-accent/8" />
-
-              {/* Subtle grid */}
+              {/* Subtle dotted texture */}
               <div
-                className="absolute inset-0 opacity-[0.025] dark:opacity-[0.035]"
+                className="absolute inset-0 opacity-[0.035] dark:opacity-[0.06]"
                 style={{
                   backgroundImage:
-                    "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
-                  backgroundSize: "70px 70px",
+                    "radial-gradient(var(--foreground) 0.7px, transparent 0.7px)",
+                  backgroundSize: "22px 22px",
                 }}
               />
 
-              {/* Soft vignette */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,var(--background)_100%)] opacity-40" />
+              {/* Soft monochrome vignette */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, transparent 40%, var(--background) 100%)",
+                  opacity: 0.45,
+                }}
+              />
             </div>
 
             <PreloaderWrapper />
             <Cursor />
             <Navbar />
 
-            {/* All website sections share the same global background */}
-            <div className="relative">
-              {children}
-            </div>
+            {/* Website sections */}
+            <div className="relative">{children}</div>
 
             <Toaster
               position="top-center"

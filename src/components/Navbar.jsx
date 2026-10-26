@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -37,125 +38,133 @@ export default function Navbar() {
   const frameId = useRef(null);
   const lastActive = useRef("Home");
 
-  useEffect(() => {
-    const updateScrollState = () => {
-      const scrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
+ useEffect(() => {
+  const updateScrollState = () => {
+    const lenis = window.__lenis;
+    const scrollY = lenis?.scroll ?? window.scrollY;
 
-      const progress =
-        scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+    const scrollHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
 
-      setScrollProgress(Math.min(100, Math.max(0, progress)));
+    const progress =
+      scrollHeight > 0 ? (scrollY / scrollHeight) * 100 : 0;
 
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
+    setScrollProgress(Math.min(100, Math.max(0, progress)));
 
-      let currentSection = "Home";
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
 
-      if (scrollY < 50) {
-        currentSection = "Home";
-      } else if (scrollY + windowHeight >= documentHeight - 5) {
-        currentSection = "Contact";
-      } else {
-        const detectionLine = scrollY + NAVBAR_OFFSET + 20;
+    let currentSection = "Home";
 
-        for (const item of menus) {
-          const section = document.querySelector(item.href);
+    if (scrollY < 50) {
+      currentSection = "Home";
+    } else if (scrollY + windowHeight >= documentHeight - 5) {
+      currentSection = "Contact";
+    } else {
+      const detectionLine = scrollY + NAVBAR_OFFSET + 20;
 
-          if (!section) continue;
+      for (const item of menus) {
+        const section = document.querySelector(item.href);
 
-          const sectionTop =
-            section.getBoundingClientRect().top + window.scrollY;
+        if (!section) continue;
 
-          if (sectionTop <= detectionLine) {
-            currentSection = item.name;
-          } else {
-            break;
-          }
+        const sectionTop =
+          section.getBoundingClientRect().top + window.scrollY;
+
+        if (sectionTop <= detectionLine) {
+          currentSection = item.name;
+        } else {
+          break;
         }
       }
+    }
 
-      if (lastActive.current !== currentSection) {
-        lastActive.current = currentSection;
-        setActive(currentSection);
-      }
+    if (lastActive.current !== currentSection) {
+      lastActive.current = currentSection;
+      setActive(currentSection);
+    }
 
-      frameId.current = null;
-    };
+    frameId.current = null;
+  };
 
-    const handleScroll = () => {
-      if (frameId.current !== null) return;
+  const handleScroll = () => {
+    if (frameId.current !== null) return;
 
-      frameId.current = window.requestAnimationFrame(updateScrollState);
-    };
+    frameId.current = window.requestAnimationFrame(updateScrollState);
+  };
 
-    updateScrollState();
+  updateScrollState();
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+  // Lenis scroll-er sathe progress sync
+  const lenis = window.__lenis;
 
-      if (frameId.current !== null) {
-        window.cancelAnimationFrame(frameId.current);
-      }
-    };
-  }, []);
+  if (lenis) {
+    lenis.on("scroll", handleScroll);
+  }
 
-  const handleMenuClick = (item) => {
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScroll);
+
+    if (lenis) {
+      lenis.off("scroll", handleScroll);
+    }
+
+    if (frameId.current !== null) {
+      window.cancelAnimationFrame(frameId.current);
+    }
+  };
+}, []);
+
+  
+const handleMenuClick = (event, item) => {
+  event?.preventDefault();
+
   const section = document.getElementById(item.href.slice(1));
 
-  if (!section) return;
-
   setMobileMenu(false);
+
+  if (!section) return;
 
   lastActive.current = item.name;
   setActive(item.name);
 
+  window.history.replaceState(null, "", item.href);
+
   const targetPosition =
     section.getBoundingClientRect().top + window.scrollY - 80;
 
-  // Update the URL without triggering native anchor navigation.
-  window.history.replaceState(null, "", item.href);
-
-  // Use only one scrolling mechanism.
   window.scrollTo({
     top: Math.max(0, targetPosition),
     behavior: "smooth",
   });
 };
 
-const handleHireMe = () => {
-  const contactItem = menus.find((item) => item.name === "Contact");
-  handleMenuClick(contactItem);
-};
+
+  const handleHireMe = (event) => {
+    const contactItem = menus.find((item) => item.name === "Contact");
+    handleMenuClick(event, contactItem);
+  };
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-lg">
-      {/* Scroll Progress Bar */}
-      <div className="absolute bottom-0 left-0 z-[60] h-[3px] w-full bg-transparent">
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-xl">
+      {/* Monochrome scroll progress */}
+      <div className="absolute bottom-0 left-0 z-[60] h-px w-full bg-transparent">
         <div
-          className="h-full rounded-r-full bg-gradient-to-r from-blue-600 via-sky-400 to-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.7)]"
+          className="h-full bg-foreground transition-[width] duration-150"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-      {/* Navbar */}
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:gap-4 lg:px-8">
         {/* Logo */}
-        <Link
-          href="#home"
-          aria-label="Go to homepage"
-          onClick={(event) =>
-            handleMenuClick(event, menus[0])
-          }
-          className="flex shrink-0 items-center"
+        <Link href="#home" aria-label="Go to homepage" onClick={(event) => handleMenuClick(event, menus[0])} className="flex shrink-0 items-center"
         >
-          <h2 className="whitespace-nowrap bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text font-mono text-lg font-bold text-transparent sm:text-xl">
-            Mezba<span className="text-sky-500">.</span>Morsalin
+          <h2 className="whitespace-nowrap font-mono text-lg font-bold tracking-tight text-foreground sm:text-xl">
+            Mezba<span className="text-muted-foreground">.</span>Morsalin
           </h2>
         </Link>
 
@@ -163,25 +172,21 @@ const handleHireMe = () => {
         <ul className="hidden min-w-0 flex-1 items-center justify-center gap-5 lg:flex xl:gap-6">
           {menus.map((item) => (
             <li key={item.name} className="shrink-0">
-              <button
-  type="button"
-  onClick={() => handleMenuClick(item)}
-  aria-current={active === item.name ? "location" : undefined}
-  className={`relative whitespace-nowrap font-mono text-xs font-medium tracking-wide transition-colors duration-200 xl:text-sm ${
-    active === item.name
-      ? "text-foreground"
-      : "text-muted-foreground hover:text-foreground"
-  }`}
->
-  {item.name}
+              <button type="button" onClick={(event) => handleMenuClick(event, item)} aria-current={active === item.name ? "location" : undefined} className={`relative whitespace-nowrap font-mono text-xs font-medium tracking-wide transition-colors duration-200 xl:text-sm ${
+                  active === item.name
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {item.name}
 
-  {active === item.name && (
-    <motion.span
-      layoutId="navbar-indicator"
-      className="absolute -bottom-2 left-0 h-1 w-full rounded-full bg-sky-500"
-    />
-  )}
-</button>
+                {active === item.name && (
+                  <motion.span
+                    layoutId="navbar-indicator"
+                    className="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-foreground"
+                  />
+                )}
+              </button>
             </li>
           ))}
         </ul>
@@ -193,20 +198,14 @@ const handleHireMe = () => {
           <a
             href="#contact"
             onClick={handleHireMe}
-            className="whitespace-nowrap rounded-xl bg-gradient-to-r from-blue-600 to-cyan-400 px-4 py-3 font-mono text-sm font-semibold text-white transition-transform duration-200 hover:scale-105 xl:px-6"
+            className="whitespace-nowrap rounded-xl border border-foreground bg-foreground px-4 py-3 font-mono text-sm font-semibold text-background transition-colors duration-200 hover:bg-background hover:text-foreground xl:px-6"
           >
             Hire Me
           </a>
         </div>
 
         {/* Mobile Menu Button */}
-        <Button
-          size="icon"
-          variant="outline"
-          onClick={() => setMobileMenu((previous) => !previous)}
-          aria-label={mobileMenu ? "Close menu" : "Open menu"}
-          aria-expanded={mobileMenu}
-          className="shrink-0 rounded-xl lg:hidden"
+        <Button size="icon" variant="outline" onClick={() => setMobileMenu((previous) => !previous)} aria-label={mobileMenu ? "Close menu" : "Open menu"} aria-expanded={mobileMenu} className="shrink-0 rounded-xl border-border bg-background text-foreground hover:bg-muted lg:hidden"
         >
           {mobileMenu ? <X size={24} /> : <Menu size={24} />}
         </Button>
@@ -234,10 +233,10 @@ const handleHireMe = () => {
                     aria-current={
                       active === item.name ? "location" : undefined
                     }
-                    className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-colors duration-200 ${
+                    className={`flex items-center gap-4 rounded-xl border px-4 py-3 transition-colors duration-200 ${
                       active === item.name
-                        ? "bg-sky-500 text-white"
-                        : "text-foreground hover:bg-muted"
+                        ? "border-foreground bg-foreground text-background"
+                        : "border-transparent text-foreground hover:border-border hover:bg-muted"
                     }`}
                   >
                     <Icon size={20} />
@@ -256,7 +255,7 @@ const handleHireMe = () => {
               <a
                 href="#contact"
                 onClick={handleHireMe}
-                className="mt-4 block rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 text-center font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-shadow duration-200 hover:shadow-[0_0_40px_rgba(14,165,233,.45)]"
+                className="mt-4 block rounded-xl border border-foreground bg-foreground px-6 py-3.5 text-center font-semibold text-background transition-colors duration-200 hover:bg-background hover:text-foreground"
               >
                 Hire Me
               </a>

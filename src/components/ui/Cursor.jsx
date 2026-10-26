@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, useMotionValue, useSpring } from "motion/react";
@@ -51,7 +52,7 @@ export default function Cursor() {
       latestX = event.clientX;
       latestY = event.clientY;
 
-      if (frameId) return;
+      if (frameId !== null) return;
 
       frameId = requestAnimationFrame(() => {
         mouseX.set(latestX);
@@ -60,18 +61,19 @@ export default function Cursor() {
       });
     };
 
-    const handleMouseDown = () => {
-      setPressed(true);
-    };
+    const handleMouseDown = () => setPressed(true);
+    const handleMouseUp = () => setPressed(false);
 
-    const handleMouseUp = () => {
-      setPressed(false);
+    const getInteractiveElement = (target) => {
+      if (!(target instanceof Element)) return null;
+
+      return target.closest(
+        "a, button, [role='button'], input, textarea, select, .cursor-hover"
+      );
     };
 
     const handlePointerOver = (event) => {
-      const interactive = event.target.closest(
-        "a, button, [role='button'], input, textarea, select, .cursor-hover"
-      );
+      const interactive = getInteractiveElement(event.target);
 
       if (!interactive) {
         setHoverType(null);
@@ -90,15 +92,13 @@ export default function Cursor() {
     };
 
     const handlePointerOut = (event) => {
-      const interactive = event.target.closest(
-        "a, button, [role='button'], input, textarea, select, .cursor-hover"
-      );
+      const interactive = getInteractiveElement(event.target);
 
       if (!interactive) return;
 
       const related = event.relatedTarget;
 
-      if (related && interactive.contains(related)) {
+      if (related instanceof Node && interactive.contains(related)) {
         return;
       }
 
@@ -108,40 +108,29 @@ export default function Cursor() {
     window.addEventListener("mousemove", handleMouseMove, {
       passive: true,
     });
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("blur", handleMouseUp);
 
-    window.addEventListener("mousedown", handleMouseDown, {
-      passive: true,
-    });
-
-    window.addEventListener("mouseup", handleMouseUp, {
-      passive: true,
-    });
-
-    document.addEventListener("pointerover", handlePointerOver, {
-      passive: true,
-    });
-
-    document.addEventListener("pointerout", handlePointerOut, {
-      passive: true,
-    });
+    document.addEventListener("pointerover", handlePointerOver);
+    document.addEventListener("pointerout", handlePointerOut);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("blur", handleMouseUp);
 
       document.removeEventListener("pointerover", handlePointerOver);
       document.removeEventListener("pointerout", handlePointerOut);
 
-      if (frameId) {
+      if (frameId !== null) {
         cancelAnimationFrame(frameId);
       }
     };
   }, [enabled, mouseX, mouseY]);
 
-  if (!enabled) {
-    return null;
-  }
+  if (!enabled) return null;
 
   const isInteractive = Boolean(hoverType);
   const isInput = hoverType === "input";
@@ -159,7 +148,7 @@ export default function Cursor() {
         animate={{
           width: isInteractive ? 74 : 42,
           height: isInteractive ? 74 : 42,
-          opacity: pressed ? 0.35 : isInteractive ? 0.38 : 0.58,
+          opacity: pressed ? 0.3 : isInteractive ? 0.35 : 0.5,
           scale: pressed ? 0.82 : 1,
         }}
         transition={{
@@ -168,7 +157,7 @@ export default function Cursor() {
           damping: 24,
           mass: 0.45,
         }}
-        className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full border border-sky-400/70 bg-sky-500/15 backdrop-blur-[2px]"
+        className="pointer-events-none fixed left-0 top-0 z-[9998] rounded-full border border-foreground/40 bg-foreground/[0.06] backdrop-blur-[2px]"
       />
 
       {/* Outer Glow */}
@@ -182,7 +171,7 @@ export default function Cursor() {
         animate={{
           width: isInteractive ? 105 : 62,
           height: isInteractive ? 105 : 62,
-          opacity: isInteractive ? 0.12 : 0.08,
+          opacity: isInteractive ? 0.12 : 0.07,
           scale: pressed ? 0.75 : 1,
         }}
         transition={{
@@ -190,7 +179,7 @@ export default function Cursor() {
           stiffness: 220,
           damping: 26,
         }}
-        className="pointer-events-none fixed left-0 top-0 z-[9997] rounded-full bg-sky-400 blur-xl"
+        className="pointer-events-none fixed left-0 top-0 z-[9997] rounded-full bg-foreground blur-xl"
       />
 
       {/* Main Cursor */}
@@ -211,7 +200,7 @@ export default function Cursor() {
           stiffness: 500,
           damping: 30,
         }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-yellow-300 shadow-[0_0_16px_rgba(253,224,71,0.95)]"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-foreground"
       />
 
       {/* Interactive Label */}
@@ -233,18 +222,14 @@ export default function Cursor() {
         }}
         className="pointer-events-none fixed left-0 top-0 z-[10000] flex items-center justify-center"
       >
-        <span className="font-mono text-[8px] font-bold uppercase tracking-[1.5px] text-sky-500">
-          {hoverType === "link" ? "Open" : "Click"}
+        <span className="font-mono text-[8px] font-bold uppercase tracking-[1.5px] text-foreground">
+          {hoverType === "link"
+            ? "Open"
+            : hoverType === "input"
+              ? ""
+              : hoverType}
         </span>
       </motion.div>
     </>
   );
 }
-
-<a
-  href="/projects"
-  data-cursor="View"
-  className="cursor-hover"
->
-  Projects
-</a>

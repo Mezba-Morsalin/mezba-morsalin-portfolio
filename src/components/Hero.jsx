@@ -34,7 +34,7 @@ const socialLinks = [
 ];
 
 const floatingIconClass =
-  "flex size-10 items-center justify-center rounded-xl border border-primary/20 bg-card shadow-lg backdrop-blur-md sm:size-11 md:size-12 lg:size-14";
+  "flex size-10 items-center justify-center rounded-xl border border-border bg-card shadow-sm backdrop-blur-md sm:size-11 md:size-12 lg:size-14";
 
 const floatingLabelClass =
   "mt-1 whitespace-nowrap text-[9px] font-medium text-muted-foreground sm:mt-2 sm:text-[10px] md:text-xs";
@@ -65,7 +65,7 @@ export default function Hero() {
           className="min-w-0"
         >
           {/* Open To Work Badge */}
-          <div className="inline-flex max-w-full items-center gap-3 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 font-mono text-xs uppercase tracking-[2px] text-primary sm:px-5 sm:tracking-[3px]">
+          <div className="inline-flex max-w-full items-center gap-3 rounded-full border border-border bg-secondary px-4 py-2 font-mono text-xs uppercase tracking-[2px] text-foreground sm:px-5 sm:tracking-[3px]">
             <motion.div
               animate={{
                 scale: [1, 1.4, 1],
@@ -76,18 +76,18 @@ export default function Hero() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="size-2.5 shrink-0 rounded-full bg-primary shadow-[0_0_8px_rgba(14,165,233,0.7)]"
+              className="size-2.5 shrink-0 rounded-full bg-foreground"
             />
 
             <span>Open to Work</span>
           </div>
 
           {/* Heading */}
-          <h1 className="mt-8 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="mt-8 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
             I&apos;m{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
-              Mezba Morsalin
-            </span>
+            <span className="bg-gradient-to-r from-foreground via-foreground/70 to-muted-foreground bg-clip-text text-transparent">
+  Mezba Morsalin
+</span>
           </h1>
 
           {/* Animated Title */}
@@ -121,12 +121,12 @@ export default function Hero() {
             {/* Hire Me */}
             <a href="#contact" className="inline-flex">
               <Button
-                size="lg"
-                className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3.5 font-semibold text-white shadow-[0_0_25px_rgba(14,165,233,.3)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(14,165,233,.45)] disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                <span>Hire Me</span>
-                <ArrowRight className="size-4" />
-              </Button>
+  size="lg"
+  className="flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 font-semibold text-background shadow-sm transition-all duration-300 hover:bg-foreground/85"
+>
+  <span>Hire Me</span>
+  <ArrowRight className="size-4" />
+</Button>
             </a>
 
             {/* Resume */}
@@ -164,7 +164,7 @@ export default function Hero() {
                 whileTap={{
                   scale: 0.92,
                 }}
-                className="flex size-12 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-background/60 text-foreground backdrop-blur-sm transition-all duration-200 hover:border-primary hover:bg-primary/10 hover:text-primary"
+                className="flex size-12 shrink-0 items-center justify-center rounded-full border border-border bg-background/60 text-foreground backdrop-blur-sm transition-all duration-200 hover:border-foreground hover:bg-foreground hover:text-background"
               >
                 {social.icon}
               </motion.a>
@@ -173,12 +173,7 @@ export default function Hero() {
         </motion.div>
 
         {/* RIGHT CONTENT / IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative flex w-full min-w-0 items-center justify-center overflow-visible"
+        <motion.div initial={{ opacity: 0, x: -60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative flex w-full min-w-0 items-center justify-center overflow-visible"
         >
           {/* Main Container */}
           <div className="relative mx-auto aspect-square w-full max-w-[620px]">
@@ -187,13 +182,7 @@ export default function Hero() {
 
             {/* MAIN IMAGE */}
             <div className="absolute left-1/2 top-1/2 z-10 flex max-w-[88%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[22px] border border-primary/40 bg-card p-2 shadow-[0_0_20px_rgba(14,165,233,0.12)] sm:rounded-[26px] sm:p-2.5 md:rounded-[32px] md:p-3 lg:rounded-[36px] lg:shadow-[0_0_30px_rgba(14,165,233,0.15)]">
-              <Image
-                src="/assests/mezbame.png"
-                alt="Mezba Morsalin"
-                width={620}
-                height={620}
-                priority
-                sizes="(max-width: 639px) 220px, (max-width: 767px) 300px, (max-width: 1023px) 360px, (max-width: 1279px) 420px, 500px"
+              <Image src="/assests/mezbame.png" alt="Mezba Morsalin" width={620} height={620} priority sizes="(max-width: 639px) 220px, (max-width: 767px) 300px, (max-width: 1023px) 360px, (max-width: 1279px) 420px, 500px"
                 className="h-auto w-[min(68vw,220px)] rounded-[16px] object-cover sm:w-[300px] sm:rounded-[20px] md:w-[360px] md:rounded-[25px] lg:max-h-[min(500px,65vh)] lg:w-auto lg:max-w-full lg:rounded-[28px] lg:object-contain"
               />
             </div>

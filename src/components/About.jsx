@@ -31,13 +31,13 @@ export default function About() {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-12 text-center sm:mb-16 lg:mb-20">
-          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[5px] text-primary sm:text-sm sm:tracking-[8px]">
+          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[5px] text-foreground sm:text-sm sm:tracking-[8px]">
             About Me
           </p>
 
-          <h2 className="mx-auto max-w-4xl font-mono text-3xl font-black leading-tight sm:text-4xl md:text-5xl lg:text-5xl">
+          <h2 className="text-4xl font-black tracking-tight sm:text-5xl md:text-6xl">
             Building{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-foreground via-foreground/70 to-muted-foreground bg-clip-text text-transparent">
               Modern Web Solutions
             </span>
           </h2>
@@ -88,11 +88,11 @@ export default function About() {
                     duration: 0.2,
                     ease: "easeOut",
                   }}
-                  className="min-w-0 rounded-2xl border border-primary/30 bg-card p-4 transition-shadow duration-300 hover:border-primary/60 hover:shadow-[0_0_30px_rgba(14,165,233,0.12)] sm:rounded-3xl sm:p-6"
+                  className="min-w-0 rounded-2xl border border-border bg-card p-4 transition-all duration-300 hover:border-foreground/40 hover:shadow-lg sm:rounded-3xl sm:p-6"
                 >
-                  <h3 className="break-words bg-gradient-to-r from-primary to-accent bg-clip-text text-base font-black text-transparent sm:text-xl">
-                    {item.number}
-                  </h3>
+                  <h3 className="break-words text-base font-black text-foreground sm:text-xl">
+  {item.number}
+</h3>
 
                   <p className="mt-2 text-xs leading-5 text-muted-foreground sm:text-sm md:text-base">
                     {item.title}
@@ -124,7 +124,7 @@ export default function About() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="pointer-events-none absolute hidden h-[420px] w-[420px] rounded-full bg-accent/20 blur-[100px] lg:block xl:h-[500px] xl:w-[500px]"
+              className="pointer-events-none absolute hidden h-[420px] w-[420px] rounded-full bg-foreground/5 blur-[100px] lg:block xl:h-[500px] xl:w-[500px]"
             />
 
             {/* Rotating Gradient Border */}
@@ -137,7 +137,7 @@ export default function About() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="pointer-events-none absolute hidden h-[500px] w-[500px] rounded-[45px] bg-gradient-to-r from-accent via-primary to-purple-500 opacity-40 lg:block xl:h-[540px] xl:w-[540px]"
+              className="pointer-events-none absolute hidden h-[500px] w-[500px] rounded-[45px] bg-gradient-to-r from-foreground/20 via-muted-foreground/30 to-foreground/10 opacity-40 lg:block xl:h-[540px] xl:w-[540px]"
             >
               <div className="m-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)] rounded-[44px] bg-background" />
             </motion.div>
@@ -154,17 +154,17 @@ export default function About() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="relative w-full min-w-0 overflow-hidden rounded-2xl border border-primary/30 bg-[#080d1a] shadow-[0_0_35px_rgba(14,165,233,0.14)] will-change-transform sm:rounded-3xl lg:shadow-[0_0_50px_rgba(14,165,233,0.18)]"
+                className="relative w-full min-w-0 overflow-hidden rounded-2xl border border-border bg-card shadow-lg will-change-transform sm:rounded-3xl"
               >
                 {/* Editor Header */}
-                <div className="flex h-12 items-center justify-between border-b border-white/10 bg-[#0d1424] px-3 sm:h-14 sm:px-5">
+                <div className="flex h-12 items-center justify-between border-b border-border bg-muted px-3 sm:h-14 sm:px-5">
                   <div className="flex items-center gap-1.5 sm:gap-2">
                     <span className="h-2.5 w-2.5 rounded-full bg-red-400 sm:h-3 sm:w-3" />
                     <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 sm:h-3 sm:w-3" />
                     <span className="h-2.5 w-2.5 rounded-full bg-green-400 sm:h-3 sm:w-3" />
                   </div>
 
-                  <div className="font-mono text-[10px] text-slate-400 sm:text-xs">
+                  <div className="font-mono text-[10px] text-muted-foreground sm:text-xs">
                     developer.js
                   </div>
 
@@ -268,7 +268,7 @@ export default function About() {
                 </div>
 
                 {/* Status Bar */}
-                <div className="flex h-8 items-center justify-between border-t border-white/10 bg-[#0d1424] px-3 sm:px-4">
+                <div className="flex h-8 items-center justify-between border-t border-border bg-muted px-3 sm:px-4">
                   <div className="flex items-center gap-1.5 text-[8px] text-slate-400 sm:gap-2 sm:text-[10px]">
                     <span className="h-1.5 w-1.5 rounded-full bg-green-400 sm:h-2 sm:w-2" />
                     Available for work
