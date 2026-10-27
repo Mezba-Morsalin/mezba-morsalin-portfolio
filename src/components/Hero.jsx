@@ -122,7 +122,7 @@ export default function Hero() {
             <a href="#contact" className="inline-flex">
               <Button
   size="lg"
-  className="flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 font-semibold text-background shadow-sm transition-all duration-300 hover:bg-foreground/85"
+  className="flex items-center justify-center gap-2 rounded-full bg-foreground px-4 md:px-6 py-3.5 font-semibold text-background shadow-sm transition-all duration-300 hover:bg-foreground/85"
 >
   <span>Hire Me</span>
   <ArrowRight className="size-4" />
@@ -139,7 +139,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="flex items-center justify-center gap-2 rounded-full border-border bg-background/50 backdrop-blur-sm hover:bg-secondary"
+                className="flex items-center justify-center gap-2 rounded-full px-4 md:px-6 py-3.5 border-border bg-background/50 backdrop-blur-sm hover:bg-secondary"
               >
                 <Download className="size-4 shrink-0" />
                 <span>Download Resume</span>
