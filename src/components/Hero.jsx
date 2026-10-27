@@ -150,13 +150,7 @@ export default function Hero() {
           {/* Social Icons */}
           <div className="mt-10 flex gap-3">
             {socialLinks.map((social) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                whileHover={{
+              <motion.a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} whileHover={{
                   y: -6,
                   rotate: 6,
                   scale: 1.08,
@@ -181,28 +175,44 @@ export default function Hero() {
             <div className="absolute left-1/2 top-1/2 size-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[50px] sm:blur-[70px] md:blur-[85px] lg:blur-[100px]" />
 
             {/* MAIN IMAGE */}
-            <div className="absolute left-1/2 top-1/2 z-10 flex max-w-[88%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[22px] border border-primary/40 bg-card p-2 shadow-[0_0_20px_rgba(14,165,233,0.12)] sm:rounded-[26px] sm:p-2.5 md:rounded-[32px] md:p-3 lg:rounded-[36px] lg:shadow-[0_0_30px_rgba(14,165,233,0.15)]">
-              <Image src="/assests/mezbame.png" alt="Mezba Morsalin" width={620} height={620} priority sizes="(max-width: 639px) 220px, (max-width: 767px) 300px, (max-width: 1023px) 360px, (max-width: 1279px) 420px, 500px"
-                className="h-auto w-[min(68vw,220px)] rounded-[16px] object-cover sm:w-[300px] sm:rounded-[20px] md:w-[360px] md:rounded-[25px] lg:max-h-[min(500px,65vh)] lg:w-auto lg:max-w-full lg:rounded-[28px] lg:object-contain"
-              />
-            </div>
+           <div className="absolute left-1/2 top-1/2 z-10 flex max-w-[88%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[22px] border border-border bg-card p-2 shadow-lg sm:rounded-[26px] sm:p-2.5 md:rounded-[32px] md:p-3 lg:rounded-[36px]">
+  <Image src="/assests/mezbame.png" alt="Mezba Morsalin" width={620} height={620} priority sizes="(max-width: 639px) 220px, (max-width: 767px) 300px, (max-width: 1023px) 360px, (max-width: 1279px) 420px, 500px" className="h-auto w-[min(68vw,220px)] rounded-[16px] object-cover sm:w-[300px] sm:rounded-[20px] md:w-[360px] md:rounded-[25px] lg:max-h-[min(500px,65vh)] lg:w-auto lg:max-w-full lg:rounded-[28px] lg:object-contain"
+  />
+</div>
 
             {/* JAVASCRIPT */}
             <motion.div
-              animate={{ y: [-6, 6, -6] }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute left-1/2 top-0 z-20 flex -translate-x-1/2 flex-col items-center"
-            >
-              <div className={floatingIconClass}>
-                <i className="devicon-javascript-plain colored text-2xl sm:text-3xl lg:text-4xl" />
-              </div>
+  animate={{ y: [-6, 6, -6] }}
+  transition={{
+    duration: 3.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="absolute left-[38%] top-0 z-20 flex -translate-x-1/2 flex-col items-center"
+>
+  <div className={floatingIconClass}>
+    <i className="devicon-javascript-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
+  </div>
 
-              <span className={floatingLabelClass}>JavaScript</span>
-            </motion.div>
+  <span className={floatingLabelClass}>JavaScript</span>
+</motion.div>
+
+            {/* TYPESCRIPT */}
+<motion.div
+  animate={{ y: [6, -6, 6] }}
+  transition={{
+    duration: 3.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="absolute left-[calc(50%+65px)] top-0 z-20 flex flex-col items-center sm:left-[calc(50%+70px)]"
+>
+  <div className={floatingIconClass}>
+    <i className="devicon-typescript-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
+  </div>
+
+  <span className={floatingLabelClass}>TypeScript</span>
+</motion.div>
 
             {/* REACT */}
             <motion.div
@@ -215,7 +225,7 @@ export default function Hero() {
               className="absolute right-0 top-[12%] z-20 flex flex-col items-center sm:top-[13%]"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-react-original colored text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-react-original grayscale text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>React</span>
@@ -249,7 +259,7 @@ export default function Hero() {
               className="absolute bottom-[12%] right-0 z-20 flex flex-col items-center sm:bottom-[13%]"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-nodejs-plain colored text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-nodejs-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>Node.js</span>
@@ -283,7 +293,7 @@ export default function Hero() {
               className="absolute bottom-[12%] left-0 z-20 flex flex-col items-center sm:bottom-[13%]"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-mongodb-plain colored text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-mongodb-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>MongoDB</span>
@@ -300,7 +310,7 @@ export default function Hero() {
               className="absolute left-0 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-tailwindcss-original colored text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-tailwindcss-original grayscale text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>Tailwind CSS</span>

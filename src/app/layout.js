@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse at center, transparent 40%, var(--background) 100%)",
+                    "radial-gradient(ellipse at center, transparent 90%, var(--background) 100%)",
                   opacity: 0.45,
                 }}
               />
@@ -65,11 +65,7 @@ export default function RootLayout({ children }) {
             {/* Website sections */}
             <div className="relative">{children}</div>
 
-            <Toaster
-              position="top-center"
-              richColors
-              closeButton
-              duration={3000}
+            <Toaster position="top-center" richColors closeButton duration={3000}
             />
           </SmoothScroll>
         </ThemeProvider>
