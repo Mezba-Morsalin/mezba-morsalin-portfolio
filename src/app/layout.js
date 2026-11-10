@@ -1,4 +1,3 @@
-
 import "./globals.css";
 
 import Cursor from "@/components/ui/Cursor";
@@ -32,28 +31,38 @@ export default function RootLayout({ children }) {
       <body className="relative min-h-full bg-background text-foreground">
         <ThemeProvider>
           <SmoothScroll>
-            {/* Minimal monochrome global background */}
+            {/* Monochrome Global Background */}
             <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-              {/* Base background */}
+              {/* Base Background */}
               <div className="absolute inset-0 bg-background" />
 
-              {/* Subtle dotted texture */}
+              {/* Subtle Dot Pattern */}
               <div
-                className="absolute inset-0 opacity-[0.035] dark:opacity-[0.06]"
+                className="absolute inset-0 opacity-[0.035] dark:opacity-[0.055]"
                 style={{
                   backgroundImage:
                     "radial-gradient(var(--foreground) 0.7px, transparent 0.7px)",
-                  backgroundSize: "22px 22px",
+                  backgroundSize: "24px 24px",
                 }}
               />
 
-              {/* Soft monochrome vignette */}
+              {/* Top Monochrome Glow */}
+              <div
+                className="absolute -top-40 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-foreground/[0.035] blur-[140px] dark:bg-foreground/[0.07]"
+              />
+
+              {/* Bottom Monochrome Glow */}
+              <div
+                className="absolute -bottom-60 -right-40 h-[500px] w-[500px] rounded-full bg-foreground/[0.025] blur-[140px] dark:bg-foreground/[0.05]"
+              />
+
+              {/* Soft Vignette */}
               <div
                 className="absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse at center, transparent 90%, var(--background) 100%)",
-                  opacity: 0.45,
+                    "radial-gradient(ellipse at center, transparent 65%, var(--background) 100%)",
+                  opacity: 0.5,
                 }}
               />
             </div>
@@ -62,10 +71,14 @@ export default function RootLayout({ children }) {
             <Cursor />
             <Navbar />
 
-            {/* Website sections */}
+            {/* Website Sections */}
             <div className="relative">{children}</div>
 
-            <Toaster position="top-center" richColors closeButton duration={3000}
+            <Toaster
+              position="top-center"
+              richColors
+              closeButton
+              duration={3000}
             />
           </SmoothScroll>
         </ThemeProvider>

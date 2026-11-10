@@ -76,7 +76,7 @@ export default function Hero() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="size-2.5 shrink-0 rounded-full bg-foreground"
+              className="size-2.5 shrink-0 rounded-full bg-green-500"
             />
 
             <span>Open to Work</span>
