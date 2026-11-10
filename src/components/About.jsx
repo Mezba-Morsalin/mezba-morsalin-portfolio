@@ -65,7 +65,7 @@ export default function About() {
               I&apos;m{" "}
               <strong className="text-foreground">Mezba Morsalin</strong>, a
               passionate Frontend Developer specializing in modern web
-              technologies, including React.js, Next.js, JavaScript, and
+              technologies, including React.js, Next.js, JavaScript,TypeScript and
               Tailwind CSS. I also have experience with Node.js, Express.js,
               and MongoDB for building complete web solutions.
             </p>
@@ -165,7 +165,7 @@ export default function About() {
                   </div>
 
                   <div className="font-mono text-[10px] text-muted-foreground sm:text-xs">
-                    developer.js
+                    developer.ts
                   </div>
 
                   <div className="w-7 sm:w-10" />
@@ -216,7 +216,7 @@ export default function About() {
                       </div>
 
                       <div className="pl-5 text-green-400 sm:pl-8">
-                        &quot;HTML&quot;, &quot;CSS&quot;, &quot;JavaScript&quot;,
+                        &quot;HTML&quot;, &quot;CSS&quot;, &quot;JavaScript&quot;,&quot;TypeScript&quot;,
                       </div>
 
                       <div className="pl-5 text-green-400 sm:pl-8">

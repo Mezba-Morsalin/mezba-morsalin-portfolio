@@ -191,7 +191,7 @@ export default function Hero() {
   className="absolute left-[38%] top-0 z-20 flex -translate-x-1/2 flex-col items-center"
 >
   <div className={floatingIconClass}>
-    <i className="devicon-javascript-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
+    <i className="devicon-javascript-plain colored text-2xl sm:text-3xl lg:text-4xl" />
   </div>
 
   <span className={floatingLabelClass}>JavaScript</span>
@@ -208,7 +208,7 @@ export default function Hero() {
   className="absolute left-[calc(50%+65px)] top-0 z-20 flex flex-col items-center sm:left-[calc(50%+70px)]"
 >
   <div className={floatingIconClass}>
-    <i className="devicon-typescript-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
+    <i className="devicon-typescript-plain colored text-2xl sm:text-3xl lg:text-4xl" />
   </div>
 
   <span className={floatingLabelClass}>TypeScript</span>
@@ -225,7 +225,7 @@ export default function Hero() {
               className="absolute right-0 top-[12%] z-20 flex flex-col items-center sm:top-[13%]"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-react-original grayscale text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-react-original colored text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>React</span>
@@ -259,7 +259,7 @@ export default function Hero() {
               className="absolute bottom-[12%] right-0 z-20 flex flex-col items-center sm:bottom-[13%]"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-nodejs-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-nodejs-plain colored text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>Node.js</span>
@@ -293,7 +293,7 @@ export default function Hero() {
               className="absolute bottom-[12%] left-0 z-20 flex flex-col items-center sm:bottom-[13%]"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-mongodb-plain grayscale text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-mongodb-plain colored text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>MongoDB</span>
@@ -310,7 +310,7 @@ export default function Hero() {
               className="absolute left-0 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-tailwindcss-original grayscale text-2xl sm:text-3xl lg:text-4xl" />
+                <i className="devicon-tailwindcss-original colored text-2xl sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>Tailwind CSS</span>
@@ -327,7 +327,7 @@ export default function Hero() {
               className="absolute left-0 top-[12%] z-20 flex flex-col items-center sm:top-[13%]"
             >
               <div className={floatingIconClass}>
-                <i className="devicon-framermotion-original text-2xl text-foreground sm:text-3xl lg:text-4xl" />
+                <i className="devicon-framermotion-original colored text-2xl text-foreground sm:text-3xl lg:text-4xl" />
               </div>
 
               <span className={floatingLabelClass}>Framer Motion</span>

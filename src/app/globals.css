@@ -357,3 +357,7 @@ html.lenis body {
     transition-duration: 0.01ms !important;
   }
 }
+/* Devicon visibility in dark mode */
+.dark .skill-icon-invert {
+  filter: invert(1);
+}

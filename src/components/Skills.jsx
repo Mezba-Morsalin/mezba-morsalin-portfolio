@@ -8,6 +8,7 @@ import {
   Database,
   Wrench,
 } from "lucide-react";
+import { SiDrizzle } from "react-icons/si";
 
 const skillCategories = [
   {
@@ -56,7 +57,7 @@ const skillCategories = [
       { name: "Nest.js", icon: "devicon-nestjs-plain" },
       { name: "Docker", icon: "devicon-docker-plain" },
       { name: "Prisma", icon: "devicon-prisma-plain" },
-      { name: "Drizzle", icon: "devicon-drizzle-original grayscale" },
+      { name: "Drizzle", icon: null },
       {
         name: "AWS",
         icon: "devicon-amazonwebservices-plain-wordmark",
@@ -65,6 +66,14 @@ const skillCategories = [
       { name: "CI/CD", icon: "devicon-githubactions-plain" },
     ],
   },
+];
+
+// Monochrome icons that need inversion in dark mode
+const monochromeIcons = [
+  "Next.js",
+  "Express.js",
+  "GitHub",
+  "Vercel",
 ];
 
 const container = {
@@ -97,6 +106,8 @@ export default function Skills() {
       className="relative scroll-mt-20 overflow-hidden py-16 sm:py-20 lg:py-24"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -121,6 +132,7 @@ export default function Skills() {
           </p>
         </motion.div>
 
+        {/* Skill Categories */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -143,6 +155,7 @@ export default function Skills() {
                 }}
                 className="min-w-0 rounded-2xl border border-border bg-card/70 p-5 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-foreground/40 hover:shadow-xl sm:rounded-3xl sm:p-7"
               >
+                {/* Category Icon */}
                 <motion.div
                   whileHover={{ rotate: 8, scale: 1.08 }}
                   transition={{ duration: 0.3 }}
@@ -151,10 +164,12 @@ export default function Skills() {
                   <Icon size={28} />
                 </motion.div>
 
+                {/* Category Title */}
                 <h3 className="mb-6 font-mono text-lg font-bold text-foreground sm:text-xl">
                   {category.title}
                 </h3>
 
+                {/* Skills List */}
                 <div className="flex flex-wrap gap-2.5 sm:gap-3">
                   {category.skills.map((skill) => (
                     <motion.span
@@ -163,13 +178,33 @@ export default function Skills() {
                       transition={{ duration: 0.2 }}
                       className="flex cursor-default items-center gap-2 rounded-full border border-border bg-background px-3 py-2 text-xs font-medium text-foreground transition-colors duration-200 hover:border-foreground/50 hover:bg-foreground hover:text-background sm:px-4 sm:text-sm"
                     >
-                      {skill.icon ? (
+                      {/* Drizzle Icon */}
+                      {skill.name === "Drizzle" ? (
+                        <SiDrizzle
+                          className="shrink-0 text-base text-[#C5F74F] sm:text-lg"
+                          aria-hidden="true"
+                        />
+                      ) : skill.icon ? (
+                        /* Devicon */
                         <i
-                          className={`${skill.icon} text-base sm:text-lg`}
+                          className={`
+                            ${skill.icon}
+                            ${
+                              monochromeIcons.includes(skill.name)
+                                ? "dark:invert"
+                                : "colored"
+                            }
+                            shrink-0 text-base sm:text-lg
+                          `}
                           aria-hidden="true"
                         />
                       ) : (
-                        <Code2 size={16} aria-hidden="true" />
+                        /* Fallback Icon */
+                        <Code2
+                          size={16}
+                          className="shrink-0"
+                          aria-hidden="true"
+                        />
                       )}
 
                       <span>{skill.name}</span>
@@ -184,6 +219,3 @@ export default function Skills() {
     </section>
   );
 }
-
-
-// { name: "Next.js", icon: "devicon-nextjs-plain dark:invert" },
